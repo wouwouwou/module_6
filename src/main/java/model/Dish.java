@@ -23,6 +23,11 @@ public class Dish {
     private double grade;
 
     /**
+     * The path to the image of the Dish.
+     */
+    private String imgpath;
+
+    /**
      * Constructor of a Dish.
      * @param title The dish needs a title.
      * @param description The dish needs a description.
@@ -79,5 +84,21 @@ public class Dish {
      */
     public void setGrade(double grade) {
         this.grade = grade;
+    }
+
+    /**
+     * Image path getter.
+     * @return The path to the image of this dish.
+     */
+    public String getImgpath() {
+        return imgpath;
+    }
+
+    /**
+     * Imgae path setter.
+     * @param imgpath The new path to the image of this dish.
+     */
+    public void setImgpath(String imgpath) {
+        this.imgpath = imgpath;
     }
 }
