@@ -5,6 +5,8 @@ package controller;
  */
 public class Viewer {
 
+    public void getDish() {
 
+    }
 
 }

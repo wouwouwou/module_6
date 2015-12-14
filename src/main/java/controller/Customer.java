@@ -5,6 +5,8 @@ package controller;
  */
 public class Customer {
 
+    public void vote() {
 
+    }
 
 }

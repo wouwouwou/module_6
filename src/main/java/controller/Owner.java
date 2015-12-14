@@ -5,6 +5,16 @@ package controller;
  */
 public class Owner {
 
+    public void createDish() {
 
+    }
+
+    public void editDish() {
+
+    }
+
+    public void deleteDish() {
+
+    }
 
 }
