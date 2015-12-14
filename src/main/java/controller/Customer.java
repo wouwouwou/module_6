@@ -5,9 +5,10 @@ package controller;
  *
  * This class controls the model as a Customer.
  */
-public class Customer {
+public class Customer extends Controller {
 
-    public void vote() {
+    public Customer() {
+        super();
 
     }
 
