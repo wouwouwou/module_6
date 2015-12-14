@@ -23,6 +23,14 @@ public class Menu {
     }
 
     /**
+     * Creates a new menu.
+     * @param dishes The dishes of the new Menu.
+     */
+    public Menu(ArrayList<Dish> dishes) {
+        this.dishes = dishes;
+    }
+
+    /**
      * Gets the dishes of the menu.
      * @return Dishes of the menu.
      */
