@@ -47,6 +47,21 @@ public class Dish {
     }
 
     /**
+     * Constructor of a Dish.
+     * @param title The dish needs a title.
+     * @param description The dish needs a description.
+     * @param grades The grades of the dish.
+     * @param imgpath The path to the image of the dish.
+     */
+    public Dish(int id, String title, String description, ArrayList<Integer> grades, String imgpath) {
+        this.id = id;
+        this.title = title;
+        this.description = description;
+        this.grades = grades;
+        this.imgpath = imgpath;
+    }
+
+    /**
      * id getter.
      * @return The id of the dish.
      */
