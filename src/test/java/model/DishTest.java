@@ -14,6 +14,8 @@ public class DishTest {
     @Before
     public void setUp() throws Exception {
 
+        Dish dish1 = new Dish("Dame Blanche", "Vanille ijs met chocoladesaus");
+
     }
 
     @Test
