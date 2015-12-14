@@ -5,10 +5,10 @@ package controller;
  *
  * This class controls the model as a Viewer.
  */
-public class Viewer {
+public class Viewer extends Controller {
 
-    public void getDish() {
-
+    public Viewer() {
+        super();
     }
 
 }

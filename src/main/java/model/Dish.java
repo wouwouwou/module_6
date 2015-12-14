@@ -1,7 +1,6 @@
 package model;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by Wouter on 8-12-2015.
@@ -9,6 +8,11 @@ import java.util.List;
  * This class represents a Dish.
  */
 public class Dish {
+
+    /**
+     * The id of the Dish.
+     */
+    private int id;
 
     /**
      * The title of the Dish.
@@ -21,9 +25,9 @@ public class Dish {
     private String description;
 
     /**
-     * The votes given to the Dish.
+     * The grades given to the Dish.
      */
-    private List<Vote> votes;
+    private ArrayList<Integer> grades;
 
     /**
      * The path to the image of the Dish.
@@ -38,8 +42,39 @@ public class Dish {
     public Dish(String title, String description) {
         this.title = title;
         this.description = description;
-        this.votes = new ArrayList<>();
+        this.grades = new ArrayList<>();
         this.imgpath = null;
+    }
+
+    /**
+     * Constructor of a Dish.
+     * @param title The dish needs a title.
+     * @param description The dish needs a description.
+     * @param grades The grades of the dish.
+     * @param imgpath The path to the image of the dish.
+     */
+    public Dish(int id, String title, String description, ArrayList<Integer> grades, String imgpath) {
+        this.id = id;
+        this.title = title;
+        this.description = description;
+        this.grades = grades;
+        this.imgpath = imgpath;
+    }
+
+    /**
+     * id getter.
+     * @return The id of the dish.
+     */
+    public int getId() {
+        return id;
+    }
+
+    /**
+     * id setter.
+     * @param id the new id of this dish.
+     */
+    public void setId(int id) {
+        this.id = id;
     }
 
     /**
@@ -75,19 +110,19 @@ public class Dish {
     }
 
     /**
-     * Getter for the list of votes given to this dish.
-     * @return The list of votes given to this dish.
+     * Getter for the list of grades given to this dish.
+     * @return The list of grades given to this dish.
      */
-    public List<Vote> getVotes() {
-        return votes;
+    public ArrayList<Integer> getGrades() {
+        return grades;
     }
 
     /**
-     * Setter for the list of votes given to this dish.
-     * @param votes The list of votes to be set.
+     * Setter for the list of grades given to this dish.
+     * @param grades The list of grades to be set.
      */
-    public void setVotes(List<Vote> votes) {
-        this.votes = votes;
+    public void setGrades(ArrayList<Integer> grades) {
+        this.grades = grades;
     }
 
     /**
