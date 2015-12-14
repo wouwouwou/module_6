@@ -13,7 +13,7 @@ public class Menu {
     /**
      * The dishes on the menu.
      */
-    private List<Dish> dishes;
+    private ArrayList<Dish> dishes;
 
     /**
      * Creates a new menu.
@@ -26,7 +26,7 @@ public class Menu {
      * Gets the dishes of the menu.
      * @return Dishes of the menu.
      */
-    public List<Dish> getDishes() {
+    public ArrayList<Dish> getDishes() {
         return dishes;
     }
 
@@ -34,7 +34,7 @@ public class Menu {
      * Sets the dishes of the menu
      * @param dishes The dishes to be set
      */
-    public void setDishes(List<Dish> dishes) {
+    public void setDishes(ArrayList<Dish> dishes) {
         this.dishes = dishes;
     }
 }
