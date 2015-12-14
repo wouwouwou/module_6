@@ -43,8 +43,8 @@ public class View extends Application {
 
         AnchorPane root = generateAnchorPane();
         Pagination pagination = generatePagination();
-        Button back = generateButton("back");
-        Button next = generateButton("next");
+        Button back = generateBackButton();
+        Button next = generateNextButton();
 
         root.getChildren().addAll(pagination, back, next);
 
@@ -157,6 +157,24 @@ public class View extends Application {
         Rating rating = new Rating(5, values.getRating());
         rating.setOnMouseClicked(event -> values.setRating((int) rating.getRating()));
         return rating;
+    }
+
+    private Button generateNextButton() {
+        Button button = generateButton("next");
+        button.setOnAction((event -> {
+            for (Pair<Dish, GuiValues> pair : dishes) {
+                Dish dish = pair.getKey();
+                GuiValues values = pair.getValue();
+                if (values.getRating() > 0) {
+                    dish.getGrades().add(values.getRating());
+                }
+            }
+        }));
+        return button;
+    }
+
+    private Button generateBackButton() {
+        return generateButton("back");
     }
 
     private Button generateButton(String text) {
