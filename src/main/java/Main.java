@@ -12,7 +12,7 @@ public class Main {
      * @param args arguments given to the program
      */
     public static void main(String[] args) {
-        Program c = new Program();
+        new Program();
     }
 
 }
