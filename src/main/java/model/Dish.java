@@ -1,5 +1,8 @@
 package model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by Wouter on 8-12-2015.
  *
@@ -18,9 +21,9 @@ public class Dish {
     private String description;
 
     /**
-     * The grade of the Dish.
+     * The votes given to the Dish.
      */
-    private double grade;
+    private List<Vote> votes;
 
     /**
      * The path to the image of the Dish.
@@ -35,7 +38,8 @@ public class Dish {
     public Dish(String title, String description) {
         this.title = title;
         this.description = description;
-        this.grade = 0.0;
+        this.votes = new ArrayList<>();
+        this.imgpath = null;
     }
 
     /**
@@ -71,19 +75,19 @@ public class Dish {
     }
 
     /**
-     * Grade getter.
-     * @return The grade of this dish.
+     * Getter for the list of votes given to this dish.
+     * @return
      */
-    public double getGrade() {
-        return grade;
+    public List<Vote> getVotes() {
+        return votes;
     }
 
     /**
-     * Grade setter.
-     * @param grade The new grade of this dish.
+     * Setter for the list of votes given to this dish.
+     * @param votes
      */
-    public void setGrade(double grade) {
-        this.grade = grade;
+    public void setVotes(List<Vote> votes) {
+        this.votes = votes;
     }
 
     /**
