@@ -76,7 +76,7 @@ public class Dish {
 
     /**
      * Getter for the list of votes given to this dish.
-     * @return
+     * @return The list of votes given to this dish.
      */
     public List<Vote> getVotes() {
         return votes;
@@ -84,7 +84,7 @@ public class Dish {
 
     /**
      * Setter for the list of votes given to this dish.
-     * @param votes
+     * @param votes The list of votes to be set.
      */
     public void setVotes(List<Vote> votes) {
         this.votes = votes;
@@ -99,7 +99,7 @@ public class Dish {
     }
 
     /**
-     * Imgae path setter.
+     * Image path setter.
      * @param imgpath The new path to the image of this dish.
      */
     public void setImgpath(String imgpath) {
