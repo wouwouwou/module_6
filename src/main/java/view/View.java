@@ -16,7 +16,6 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import javafx.util.Pair;
 import model.Dish;
 import org.controlsfx.control.Rating;
 
@@ -30,7 +29,7 @@ public class View extends Application {
     private static final double MIN_WIDTH = 3d * SIZE + 3d * DISH_AMOUNT * PADDING + 2d * PADDING;
     private static final double MIN_HEIGHT = 2d * SIZE + 2d * PADDING;
 
-    private List<Pair<Dish, GuiValues>> dishes;
+    private List<DishValues> dishes;
 
     public static void main(String[] args) {
         launch(args);
@@ -69,10 +68,8 @@ public class View extends Application {
 
     private void testDishes() {
         for (int i = 0; i < 15; i++) {
-            dishes.add(new Pair<>(
-                    new Dish("Steak number " + i, "This is steak number " + i + ". It's a steak, made of meat, with pepper and salt."),
-                    new GuiValues()
-            ));
+            Dish dish = new Dish("Steak number " + i, "This is steak number " + i + ". It's a steak, made of meat, with pepper and salt.");
+            dishes.add(new DishValues(dish));
         }
     }
 
@@ -99,15 +96,13 @@ public class View extends Application {
     }
 
     private VBox generateVBox(int dishIndex) {
-        Pair<Dish, GuiValues> pair = dishes.get(dishIndex);
-        Dish dish = pair.getKey();
-        GuiValues values = pair.getValue();
+        DishValues values = dishes.get(dishIndex);
 
         VBox vBox = new VBox(PADDING);
         vBox.setAlignment(Pos.CENTER);
 
-        Text title = generateVBoxTitle(dish.getTitle());
-        Text description = generateVBoxDescription(dish.getDescription());
+        Text title = generateVBoxTitle(values.getDish().getTitle());
+        Text description = generateVBoxDescription(values.getDish().getDescription());
         ImageView imageView = generateVBoxImageView("/steak.jpg");
         TextArea comment = generateVBoxComment(values);
         Rating rating = generateVBoxRating(values);
@@ -143,7 +138,7 @@ public class View extends Application {
         return imageView;
     }
 
-    private TextArea generateVBoxComment(GuiValues values) {
+    private TextArea generateVBoxComment(DishValues values) {
         TextArea comment = new TextArea();
         comment.setWrapText(true);
         comment.setText(values.getComment());
@@ -153,7 +148,7 @@ public class View extends Application {
         return comment;
     }
 
-    private Rating generateVBoxRating(GuiValues values) {
+    private Rating generateVBoxRating(DishValues values) {
         Rating rating = new Rating(5, values.getRating());
         rating.setOnMouseClicked(event -> values.setRating((int) rating.getRating()));
         return rating;
@@ -161,15 +156,7 @@ public class View extends Application {
 
     private Button generateNextButton() {
         Button button = generateButton("next");
-        button.setOnAction((event -> {
-            for (Pair<Dish, GuiValues> pair : dishes) {
-                Dish dish = pair.getKey();
-                GuiValues values = pair.getValue();
-                if (values.getRating() > 0) {
-                    dish.getGrades().add(values.getRating());
-                }
-            }
-        }));
+        button.setOnAction(event -> dishes.stream().filter(values -> values.getRating() > 0).forEach(values -> values.getDish().getGrades().add(values.getRating())));
         return button;
     }
 
@@ -183,13 +170,19 @@ public class View extends Application {
         return button;
     }
 
-    private static class GuiValues {
+    private static class DishValues {
+        private final Dish dish;
         private String comment;
         private int rating;
 
-        public GuiValues() {
-            comment = "";
-            rating = 0;
+        public DishValues(Dish dish) {
+            this.dish = dish;
+            this.comment = "";
+            this.rating = 0;
+        }
+
+        public Dish getDish() {
+            return dish;
         }
 
         public String getComment() {
