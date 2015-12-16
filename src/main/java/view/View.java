@@ -67,7 +67,7 @@ public class View extends Application {
     }
 
     private void testDishes() {
-        for (int i = 0; i < 15; i++) {
+        for (int i = 0; i < 11; i++) {
             Dish dish = new Dish("Steak number " + i, "This is steak number " + i + ". It's a steak, made of meat, with pepper and salt.");
             dishes.add(new DishValues(dish));
         }
@@ -78,7 +78,7 @@ public class View extends Application {
     }
 
     private Pagination generatePagination() {
-        Pagination pagination = new Pagination(dishes.size() / DISH_AMOUNT);
+        Pagination pagination = new Pagination((int) Math.ceil((double) dishes.size() / (double) DISH_AMOUNT));
         pagination.setPageFactory(this::generateHBox);
         return pagination;
     }
@@ -88,7 +88,7 @@ public class View extends Application {
         hBox.setAlignment(Pos.CENTER);
 
         int start = DISH_AMOUNT * pageIndex;
-        for (int i = start; i < start + DISH_AMOUNT; i++) {
+        for (int i = start; i < start + DISH_AMOUNT && i < dishes.size(); i++) {
             hBox.getChildren().add(generateVBox(i));
         }
 
