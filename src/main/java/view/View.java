@@ -3,9 +3,7 @@ package view;
 import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Pagination;
-import javafx.scene.control.TextArea;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -71,6 +69,21 @@ public class View extends Application {
             Dish dish = new Dish("Steak number " + i, "This is steak number " + i + ". It's a steak, made of meat, with pepper and salt.");
             dishes.add(new DishValues(dish));
         }
+    }
+
+    private void next() {
+        for (DishValues dishValues : dishes) {
+            if (dishValues.getRating() == 0) {
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Not all dishes are rated. Do you want to continue?");
+                alert.showAndWait()
+                        .filter(response -> response == ButtonType.OK)
+                        .ifPresent(response -> dishes.stream()
+                                .filter(values -> values.getRating() > 0)
+                                .forEach(values -> values.getDish().getGrades().add(values.getRating())));
+                break;
+            }
+        }
+
     }
 
     private AnchorPane generateAnchorPane() {
@@ -156,7 +169,7 @@ public class View extends Application {
 
     private Button generateNextButton() {
         Button button = generateButton("next");
-        button.setOnAction(event -> dishes.stream().filter(values -> values.getRating() > 0).forEach(values -> values.getDish().getGrades().add(values.getRating())));
+        button.setOnAction(event -> next());
         return button;
     }
 
