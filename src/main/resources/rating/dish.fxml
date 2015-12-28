@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Text?>
+<?import org.controlsfx.control.Rating?>
+<GridPane xmlns:fx="http://javafx.com/fxml" fx:id="root" hgap="10" vgap="10" alignment="CENTER">
+    <padding>
+        <Insets top="10" right="10" bottom="10" left="10"/>
+    </padding>
+    <ImageView fx:id="image" smooth="true" preserveRatio="false" fitWidth="100" fitHeight="100"
+               GridPane.columnIndex="0" GridPane.columnSpan="1" GridPane.rowIndex="0" GridPane.rowSpan="2"/>
+    <Text fx:id="title" wrappingWidth="200"
+          GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="0" GridPane.rowSpan="1"/>
+    <Rating fx:id="rating" disable="true"
+            GridPane.columnIndex="3" GridPane.columnSpan="1" GridPane.rowIndex="0" GridPane.rowSpan="1"/>
+    <Text fx:id="votes" wrappingWidth="100"
+          GridPane.columnIndex="4" GridPane.columnSpan="1" GridPane.rowIndex="0" GridPane.rowSpan="1"/>
+    <Text fx:id="comment" wrappingWidth="400"
+          GridPane.columnIndex="1" GridPane.columnSpan="4" GridPane.rowIndex="1" GridPane.rowSpan="1"/>
+</GridPane>
