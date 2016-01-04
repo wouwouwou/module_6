@@ -59,11 +59,12 @@ public class Dish {
      * @param grades The grades of the dish.
      * @param imgpath The path to the image of the dish.
      */
-    public Dish(int id, String title, String description, ArrayList<Integer> grades, String imgpath) {
+    public Dish(int id, String title, String description, ArrayList<Integer> grades, ArrayList<String> comments, String imgpath) {
         this.id = id;
         this.title = title;
         this.description = description;
         this.grades = grades;
+        this.comments = comments;
         this.imgpath = imgpath;
     }
 
