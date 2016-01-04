@@ -4,6 +4,6 @@
 <?import javafx.scene.layout.*?>
 <AnchorPane xmlns:fx="http://javafx.com/fxml" fx:id="root">
     <Pagination fx:id="pagination" AnchorPane.topAnchor="10" AnchorPane.rightAnchor="10" AnchorPane.bottomAnchor="10" AnchorPane.leftAnchor="10"/>
-    <Button fx:id="backButton" text="Back" onAction="#back" AnchorPane.bottomAnchor="10" AnchorPane.leftAnchor="10"/>
-    <Button fx:id="nextButton" text="Next" onAction="#next" AnchorPane.rightAnchor="10" AnchorPane.bottomAnchor="10"/>
+    <Button fx:id="backButton" text="Cancel" onAction="#cancelButton" AnchorPane.bottomAnchor="10" AnchorPane.leftAnchor="10"/>
+    <Button fx:id="nextButton" text="Submit" onAction="#submitButton" AnchorPane.rightAnchor="10" AnchorPane.bottomAnchor="10"/>
 </AnchorPane>

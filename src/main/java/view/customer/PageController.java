@@ -1,4 +1,4 @@
-package view.review;
+package view.customer;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -12,14 +12,14 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class ReviewPageController implements Initializable {
+public class PageController implements Initializable {
+
+    private final List<DishValues> dishes;
 
     @FXML
     private HBox root;
 
-    private List<DishValues> dishes;
-
-    public ReviewPageController(List<DishValues> dishes) {
+    public PageController(List<DishValues> dishes) {
         this.dishes = dishes;
     }
 
@@ -32,8 +32,8 @@ public class ReviewPageController implements Initializable {
 
     private Node generateDish(DishValues values) {
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/review/dish.fxml"));
-            fxmlLoader.setController(new ReviewDishController(values));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/customer/dish.fxml"));
+            fxmlLoader.setController(new DishController(values));
             return fxmlLoader.load();
         } catch (IOException e) {
             e.printStackTrace();

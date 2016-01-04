@@ -1,4 +1,4 @@
-package view.rating;
+package view.viewer;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -12,7 +12,9 @@ import view.Util;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class RatingDishController implements Initializable {
+public class DishController implements Initializable {
+
+    private final DishValues values;
 
     @FXML
     private GridPane root;
@@ -27,9 +29,7 @@ public class RatingDishController implements Initializable {
     @FXML
     private Text comment;
 
-    private DishValues values;
-
-    public RatingDishController(DishValues values) {
+    public DishController(DishValues values) {
         this.values = values;
     }
 

@@ -1,5 +1,6 @@
-package view.review;
+package view.customer;
 
+import controller.Customer;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -9,6 +10,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Pagination;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 import view.DishValues;
 
 import java.io.IOException;
@@ -17,8 +19,11 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 
-public class ReviewController implements Initializable {
+public class RootController implements Initializable {
     public static final int DISH_AMOUNT = 3;
+
+    private final Customer customer;
+    private final List<DishValues> dishes;
 
     @FXML
     private AnchorPane root;
@@ -29,10 +34,11 @@ public class ReviewController implements Initializable {
     @FXML
     private Button nextButton;
 
-    private List<DishValues> dishes;
-
-    public ReviewController(List<DishValues> dishes) {
-        this.dishes = dishes;
+    public RootController(Customer customer) {
+        this.customer = customer;
+        dishes = customer.getMenu().getDishes().stream()
+                .map(DishValues::new)
+                .collect(Collectors.toList());
     }
 
     @Override
@@ -47,8 +53,8 @@ public class ReviewController implements Initializable {
                 .limit(DISH_AMOUNT)
                 .collect(Collectors.toList());
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/review/page.fxml"));
-            fxmlLoader.setController(new ReviewPageController(pageDishes));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/customer/page.fxml"));
+            fxmlLoader.setController(new PageController(pageDishes));
             return fxmlLoader.load();
         } catch (IOException e) {
             e.printStackTrace();
@@ -59,11 +65,16 @@ public class ReviewController implements Initializable {
     private void submit() {
         dishes.stream()
                 .filter(values -> values.getRating() > 0)
-                .forEach(values -> values.getDish().getGrades().add(values.getRating()));
+                .forEach(values -> customer.gradeDish(values.getDish(), values.getRating()));
+        close();
+    }
+
+    private void close() {
+        ((Stage) root.getScene().getWindow()).close();
     }
 
     @FXML
-    private void next() {
+    private void submitButton() {
         if (dishes.stream().noneMatch(dishValues -> dishValues.getRating() == 0)) {
             submit();
         } else {
@@ -75,7 +86,7 @@ public class ReviewController implements Initializable {
     }
 
     @FXML
-    private void back() {
-        //TODO
+    private void cancelButton() {
+        close();
     }
 }

@@ -1,5 +1,6 @@
-package view.rating;
+package view.viewer;
 
+import controller.Viewer;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -15,8 +16,11 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 
-public class RatingController implements Initializable {
+public class RootController implements Initializable {
     public static final int DISH_AMOUNT = 4;
+
+    private final Viewer viewer;
+    private final List<DishValues> dishes;
 
     @FXML
     private AnchorPane root;
@@ -27,10 +31,11 @@ public class RatingController implements Initializable {
     @FXML
     private Button nextButton;
 
-    private List<DishValues> dishes;
-
-    public RatingController(List<DishValues> dishes) {
-        this.dishes = dishes;
+    public RootController(Viewer viewer) {
+        this.viewer = viewer;
+        dishes = viewer.getMenu().getDishes().stream()
+                .map(DishValues::new)
+                .collect(Collectors.toList());
     }
 
     @Override
@@ -45,8 +50,8 @@ public class RatingController implements Initializable {
                 .limit(DISH_AMOUNT)
                 .collect(Collectors.toList());
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/rating/page.fxml"));
-            fxmlLoader.setController(new RatingPageController(pageDishes));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/viewer/page.fxml"));
+            fxmlLoader.setController(new PageController(pageDishes));
             return fxmlLoader.load();
         } catch (IOException e) {
             e.printStackTrace();
@@ -56,11 +61,11 @@ public class RatingController implements Initializable {
 
     @FXML
     private void next() {
-        //TODO
+        pagination.setCurrentPageIndex((pagination.getCurrentPageIndex() + 1) % pagination.getPageCount());
     }
 
     @FXML
     private void back() {
-        //TODO
+        pagination.setCurrentPageIndex((pagination.getCurrentPageIndex() + pagination.getPageCount() - 1) % pagination.getPageCount());
     }
 }
