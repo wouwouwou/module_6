@@ -18,8 +18,14 @@ import java.util.ArrayList;
  */
 public class Controller {
 
+    /**
+     * This controller has a menu
+     */
     private Menu menu;
 
+    /**
+     * Constructor of the controller.
+     */
     public Controller() {
         importMenu();
     }
@@ -83,7 +89,7 @@ public class Controller {
 
                 //We have a new Dish
                 Dish d = new Dish(
-                        (Integer) jsonDish.get("id"),
+                        (Long) jsonDish.get("id"),
                         (String) jsonDish.get("title"),
                         (String) jsonDish.get("description"),
                         grades,
