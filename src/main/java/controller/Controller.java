@@ -25,7 +25,8 @@ public class Controller {
 
     /**
      * Constructor of the controller.
-     * It always imports the menu if the file menu.json exists.
+     * It always imports the menu if the file menu.json exists and if the
+     * file can be parsed. Otherwise makes a new menu.
      */
     public Controller() {
         try {
@@ -37,6 +38,10 @@ public class Controller {
 
     /**
      * Imports the menu.
+     * Throws an IOException if there is a problem reading the file
+     * Throws an ParseException if the file can not be parsed.
+     * @throws IOException
+     * @throws ParseException
      */
     public void importMenu() throws IOException,ParseException {
 
