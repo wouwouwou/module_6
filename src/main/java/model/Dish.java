@@ -1,5 +1,6 @@
 package model;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 /**
@@ -28,6 +29,11 @@ public class Dish {
      * The grades given to the Dish.
      */
     private ArrayList<Integer> grades;
+
+    /**
+     * The comments on the Dish.
+     */
+    private ArrayList<String> comments;
 
     /**
      * The path to the image of the Dish.
@@ -123,6 +129,22 @@ public class Dish {
      */
     public void setGrades(ArrayList<Integer> grades) {
         this.grades = grades;
+    }
+
+    /**
+     * Getter for the comments on this dish.
+     * @return The comments on this dish.
+     */
+    public ArrayList<String> getComments() {
+        return comments;
+    }
+
+    /**
+     * Setter for the comments on this dish.
+     * @param comments The comments on this dish.
+     */
+    public void setComments(ArrayList<String> comments) {
+        this.comments = comments;
     }
 
     /**

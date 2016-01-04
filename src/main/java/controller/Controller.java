@@ -32,7 +32,7 @@ public class Controller {
 
         try {
 
-            Object obj = parser.parse(new FileReader("c:\\test.json"));
+            Object obj = parser.parse(new FileReader("test.json"));
             JSONObject jsonMenu = (JSONObject) obj;
             JSONArray dishArray = (JSONArray) jsonMenu.get("dishes");
 
@@ -96,7 +96,7 @@ public class Controller {
 
         try {
 
-            FileWriter file = new FileWriter("c:\\test.json");
+            FileWriter file = new FileWriter("test.json");
             file.write(menu.toJSONString());
             file.flush();
             file.close();
