@@ -11,6 +11,7 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.Pagination;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import model.Dish;
 import view.DishValues;
 
 import java.io.IOException;
@@ -63,14 +64,24 @@ public class RootController implements Initializable {
     }
 
     private void submit() {
-        dishes.stream()
-                .filter(values -> values.getRating() > 0)
-                .forEach(values -> customer.gradeDish(values.getDish(), values.getRating()));
+        dishes.forEach(this::gradeDish);
         close();
     }
 
     private void close() {
         ((Stage) root.getScene().getWindow()).close();
+    }
+
+    private void gradeDish(DishValues values) {
+        Dish dish = values.getDish();
+        String comment = values.getComment();
+        int rating = values.getRating();
+        if (!"".equals(comment)) {
+            dish.getComments().add(comment);
+        }
+        if (rating > 0) {
+            dish.getGrades().add(rating);
+        }
     }
 
     @FXML

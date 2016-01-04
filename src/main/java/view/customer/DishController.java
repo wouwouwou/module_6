@@ -38,7 +38,7 @@ public class DishController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         title.setText(values.getDish().getTitle());
         description.setText(values.getDish().getDescription());
-        Util.loadImage("/steak.jpg", image);
+        Util.loadImage(values.getDish().getImgpath(), image);
         comment.setText(values.getComment());
         rating.setRating(values.getRating());
     }

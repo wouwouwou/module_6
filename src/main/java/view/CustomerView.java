@@ -34,11 +34,15 @@ public class CustomerView extends Application {
 
     @Override
     public void stop() throws Exception {
+        generateMenu();
+        customer.exportMenu();
+    }
+
+    private void generateMenu() {
         ArrayList<Dish> dishes = new ArrayList<>();
         for (int i = 0; i < 11; i++) {
-            dishes.add(new Dish("Steak number " + i, "This is steak number " + i + ". It's a steak, made of meat, with pepper and salt."));
+            dishes.add(new Dish(i, "Steak number " + i, "This is steak number " + i + ". It's a steak, made of meat, with pepper and salt.", new ArrayList<>(), new ArrayList<>(), "/steak.jpg"));
         }
         customer.setMenu(new Menu(dishes));
-        customer.exportMenu();
     }
 }
