@@ -5,8 +5,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
+import model.Dish;
 import org.controlsfx.control.Rating;
-import view.DishValues;
 import view.Util;
 
 import java.net.URL;
@@ -14,7 +14,7 @@ import java.util.ResourceBundle;
 
 public class DishController implements Initializable {
 
-    private final DishValues values;
+    private final Dish dish;
 
     @FXML
     private GridPane root;
@@ -29,19 +29,24 @@ public class DishController implements Initializable {
     @FXML
     private Text comment;
 
-    public DishController(DishValues values) {
-        this.values = values;
+    public DishController(Dish dish) {
+        this.dish = dish;
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        Util.loadImage("/steak.jpg", image);
-        title.setText(values.getDish().getTitle());
-//        rating.setRating(values.getRating());
-        rating.setRating(3);
-//        votes.setText(values.getDish().getGrades().size() + " votes");
-        votes.setText(26 + " votes");
-//        comment.setText(values.getComment());
-        comment.setText("This is a test please leave actual random comment here");
+        Util.loadImage(dish.getImgpath(), image);
+        title.setText(dish.getTitle());
+        if (!dish.getGrades().isEmpty()) {
+            rating.setRating(dish.getGrades().stream().mapToDouble(Integer::doubleValue).sum() / dish.getGrades().size());
+        } else {
+            rating.setRating(0);
+        }
+        votes.setText(dish.getGrades().size() + " votes");
+        if (!dish.getComments().isEmpty()) {
+            comment.setText(dish.getComments().get(dish.getComments().size() - 1));
+        } else {
+            comment.setText("");
+        }
     }
 }

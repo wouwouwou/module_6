@@ -8,7 +8,7 @@ import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Pagination;
 import javafx.scene.layout.AnchorPane;
-import view.DishValues;
+import model.Dish;
 
 import java.io.IOException;
 import java.net.URL;
@@ -20,7 +20,6 @@ public class RootController implements Initializable {
     public static final int DISH_AMOUNT = 4;
 
     private final Viewer viewer;
-    private final List<DishValues> dishes;
 
     @FXML
     private AnchorPane root;
@@ -33,19 +32,16 @@ public class RootController implements Initializable {
 
     public RootController(Viewer viewer) {
         this.viewer = viewer;
-        dishes = viewer.getMenu().getDishes().stream()
-                .map(DishValues::new)
-                .collect(Collectors.toList());
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        pagination.setPageCount((int) Math.ceil((double) dishes.size() / (double) DISH_AMOUNT));
+        pagination.setPageCount((int) Math.ceil((double) viewer.getMenu().getDishes().size() / (double) DISH_AMOUNT));
         pagination.setPageFactory(this::generatePage);
     }
 
     private Node generatePage(int pageIndex) {
-        List<DishValues> pageDishes = dishes.stream()
+        List<Dish> pageDishes = viewer.getMenu().getDishes().stream()
                 .skip(DISH_AMOUNT * pageIndex)
                 .limit(DISH_AMOUNT)
                 .collect(Collectors.toList());

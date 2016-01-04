@@ -5,7 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.layout.VBox;
-import view.DishValues;
+import model.Dish;
 
 import java.io.IOException;
 import java.net.URL;
@@ -14,12 +14,12 @@ import java.util.ResourceBundle;
 
 public class PageController implements Initializable {
 
-    private final List<DishValues> dishes;
+    private final List<Dish> dishes;
 
     @FXML
     private VBox root;
 
-    public PageController(List<DishValues> dishes) {
+    public PageController(List<Dish> dishes) {
         this.dishes = dishes;
     }
 
@@ -30,10 +30,10 @@ public class PageController implements Initializable {
                 .forEach(root.getChildren()::add);
     }
 
-    private Node generateDish(DishValues values) {
+    private Node generateDish(Dish dish) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/viewer/dish.fxml"));
-            fxmlLoader.setController(new DishController(values));
+            fxmlLoader.setController(new DishController(dish));
             return fxmlLoader.load();
         } catch (IOException e) {
             e.printStackTrace();
