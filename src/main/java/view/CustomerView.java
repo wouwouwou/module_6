@@ -34,7 +34,7 @@ public class CustomerView extends Application {
 
     @Override
     public void stop() throws Exception {
-        generateMenu();
+//        generateMenu();
         customer.exportMenu();
     }
 
