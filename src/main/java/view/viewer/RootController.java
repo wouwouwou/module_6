@@ -1,5 +1,6 @@
-package view.rating;
+package view.viewer;
 
+import controller.Viewer;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -7,7 +8,7 @@ import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Pagination;
 import javafx.scene.layout.AnchorPane;
-import view.DishValues;
+import model.Dish;
 
 import java.io.IOException;
 import java.net.URL;
@@ -15,8 +16,10 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 
-public class RatingController implements Initializable {
+public class RootController implements Initializable {
     public static final int DISH_AMOUNT = 4;
+
+    private final Viewer viewer;
 
     @FXML
     private AnchorPane root;
@@ -27,26 +30,24 @@ public class RatingController implements Initializable {
     @FXML
     private Button nextButton;
 
-    private List<DishValues> dishes;
-
-    public RatingController(List<DishValues> dishes) {
-        this.dishes = dishes;
+    public RootController(Viewer viewer) {
+        this.viewer = viewer;
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        pagination.setPageCount((int) Math.ceil((double) dishes.size() / (double) DISH_AMOUNT));
+        pagination.setPageCount((int) Math.ceil((double) viewer.getMenu().getDishes().size() / (double) DISH_AMOUNT));
         pagination.setPageFactory(this::generatePage);
     }
 
     private Node generatePage(int pageIndex) {
-        List<DishValues> pageDishes = dishes.stream()
+        List<Dish> pageDishes = viewer.getMenu().getDishes().stream()
                 .skip(DISH_AMOUNT * pageIndex)
                 .limit(DISH_AMOUNT)
                 .collect(Collectors.toList());
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/rating/page.fxml"));
-            fxmlLoader.setController(new RatingPageController(pageDishes));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/viewer/page.fxml"));
+            fxmlLoader.setController(new PageController(pageDishes));
             return fxmlLoader.load();
         } catch (IOException e) {
             e.printStackTrace();
@@ -56,11 +57,11 @@ public class RatingController implements Initializable {
 
     @FXML
     private void next() {
-        //TODO
+        pagination.setCurrentPageIndex((pagination.getCurrentPageIndex() + 1) % pagination.getPageCount());
     }
 
     @FXML
     private void back() {
-        //TODO
+        pagination.setCurrentPageIndex((pagination.getCurrentPageIndex() + pagination.getPageCount() - 1) % pagination.getPageCount());
     }
 }

@@ -1,10 +1,10 @@
-package view.rating;
+package view.customer;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.HBox;
 import view.DishValues;
 
 import java.io.IOException;
@@ -12,14 +12,14 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class RatingPageController implements Initializable {
+public class PageController implements Initializable {
+
+    private final List<DishValues> dishes;
 
     @FXML
-    private VBox root;
+    private HBox root;
 
-    private List<DishValues> dishes;
-
-    public RatingPageController(List<DishValues> dishes) {
+    public PageController(List<DishValues> dishes) {
         this.dishes = dishes;
     }
 
@@ -32,8 +32,8 @@ public class RatingPageController implements Initializable {
 
     private Node generateDish(DishValues values) {
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/rating/dish.fxml"));
-            fxmlLoader.setController(new RatingDishController(values));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/customer/dish.fxml"));
+            fxmlLoader.setController(new DishController(values));
             return fxmlLoader.load();
         } catch (IOException e) {
             e.printStackTrace();

@@ -12,6 +12,6 @@ public class Util {
         clip.setArcWidth(20d);
         clip.setArcHeight(20d);
         image.setClip(clip);
-        image.setImage(new Image(View.class.getResourceAsStream(path)));
+        image.setImage(new Image(Util.class.getResourceAsStream(path)));
     }
 }

@@ -1,25 +1,25 @@
-package view.review;
+package view.viewer;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.layout.HBox;
-import view.DishValues;
+import javafx.scene.layout.VBox;
+import model.Dish;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class ReviewPageController implements Initializable {
+public class PageController implements Initializable {
+
+    private final List<Dish> dishes;
 
     @FXML
-    private HBox root;
+    private VBox root;
 
-    private List<DishValues> dishes;
-
-    public ReviewPageController(List<DishValues> dishes) {
+    public PageController(List<Dish> dishes) {
         this.dishes = dishes;
     }
 
@@ -30,10 +30,10 @@ public class ReviewPageController implements Initializable {
                 .forEach(root.getChildren()::add);
     }
 
-    private Node generateDish(DishValues values) {
+    private Node generateDish(Dish dish) {
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/review/dish.fxml"));
-            fxmlLoader.setController(new ReviewDishController(values));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/viewer/dish.fxml"));
+            fxmlLoader.setController(new DishController(dish));
             return fxmlLoader.load();
         } catch (IOException e) {
             e.printStackTrace();
