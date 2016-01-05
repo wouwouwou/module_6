@@ -1,5 +1,6 @@
 package controller;
 
+import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
 import model.Dish;
 import model.Menu;
 import org.json.simple.JSONArray;
@@ -116,72 +117,82 @@ public class Controller {
     }
 
     /**
-     * Exports the menu.
+     * Exports the menu as JSON to the file "menu.json".
      */
-    public void exportMenu() {
-
-        //The menu is an object
+    public void exportMenu() throws IOException {
         JSONObject menu = new JSONObject();
+        JSONArray dishes = dishesToJSONArray();
+        menu.put("dishes", dishes);
+        saveJSON("menu.json", menu);
+    }
 
-        //The menu contains an array of dishes
+    /**
+     * Makes a JSONArray of all the dishes on the menu.
+     * @return JSONArray of all the dishes on the menu.
+     */
+    private JSONArray dishesToJSONArray() {
         JSONArray dishes = new JSONArray();
-
-        //Get the dishes
         ArrayList<Dish> dishlist = getMenu().getDishes();
-
-        //For every dish
         for (Dish d : dishlist) {
-
-            //The dish is an object
-            JSONObject dish = new JSONObject();
-
-            //The dish has these fields
-            dish.put("id", d.getId());
-            dish.put("title", d.getTitle());
-            dish.put("description", d.getDescription());
-            dish.put("imgpath", d.getImgpath());
-
-            //The dish has an array of grades
-            JSONArray grades = new JSONArray();
-
-            //The dish has an array of comments;
-            JSONArray comments = new JSONArray();
-
-            //For every grade
-            for (int g : d.getGrades()) {
-
-                //Add the grade to the array
-                grades.add(g);
-            }
-
-            for (String c : d.getComments()) {
-
-                //Add the comment to the array
-                comments.add(c);
-            }
-
-            //The dish has these arrays
-            dish.put("comments", comments);
-            dish.put("grades", grades);
-
-            //Add the dish to the list of dishes
+            JSONObject dish = dishToJSONObject(d);
             dishes.add(dish);
         }
+        return dishes;
+    }
 
-        //Add the dishes to the menu
-        menu.put("dishes", dishes);
+    /**
+     * Makes a JSONObject of a dish on the menu.
+     * @param d the dish on the menu
+     * @return the dish on the menu as JSONObject
+     */
+    private JSONObject dishToJSONObject(Dish d) {
+        JSONObject dish = new JSONObject();
+        dish.put("id", d.getId());
+        dish.put("title", d.getTitle());
+        dish.put("description", d.getDescription());
+        dish.put("imgpath", d.getImgpath());
+        dish.put("comments", commentsToJSONArray(d));
+        dish.put("grades", gradesToJSONArray(d));
+        return dish;
+    }
 
-        //Save the menu
-        try {
-
-            FileWriter file = new FileWriter("menu.json");
-            file.write(menu.toJSONString());
-            file.flush();
-            file.close();
-
-        } catch (IOException e) {
-            e.printStackTrace();
+    /**
+     * Makes a JSONArray of the grades of a dish
+     * @param d the dish
+     * @return the grades as JSONArray
+     */
+    private JSONArray gradesToJSONArray(Dish d) {
+        JSONArray grades = new JSONArray();
+        for (int g : d.getGrades()) {
+            grades.add(g);
         }
+        return grades;
+    }
+
+    /**
+     * Makes a JSONArray of the comments on a dish
+     * @param d the dish
+     * @return the comments as JSONArray
+     */
+    private JSONArray commentsToJSONArray(Dish d) {
+        JSONArray comments = new JSONArray();
+        for (String c : d.getComments()) {
+            comments.add(c);
+        }
+        return comments;
+    }
+
+    /**
+     * Saves a JSONObject to a given filename.
+     * @param filename the filename
+     * @param json the JSONObject to be saved
+     * @throws IOException
+     */
+    private void saveJSON(String filename, JSONObject json) throws IOException {
+        FileWriter file = new FileWriter(filename);
+        file.write(json.toJSONString());
+        file.flush();
+        file.close();
     }
 
     public Menu getMenu() {
