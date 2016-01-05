@@ -67,8 +67,7 @@ public class RootController implements Initializable {
         try {
             customer.exportMenu();
         } catch (IOException e) {
-            e.printStackTrace();
-            System.out.println(e.getMessage());
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Error when exporting the menu. Contact the developers!");
         }
         close();
     }
