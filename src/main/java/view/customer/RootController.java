@@ -64,7 +64,12 @@ public class RootController implements Initializable {
 
     private void submit() {
         dishes.forEach(this::gradeDish);
-        customer.exportMenu();
+        try {
+            customer.exportMenu();
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println(e.getMessage());
+        }
         close();
     }
 
