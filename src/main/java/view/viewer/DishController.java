@@ -38,7 +38,7 @@ public class DishController implements Initializable {
         Util.loadImage(dish.getImgpath(), image);
         title.setText(dish.getTitle());
         if (!dish.getGrades().isEmpty()) {
-            rating.setRating(dish.getGrades().stream().mapToDouble(Integer::doubleValue).sum() / dish.getGrades().size());
+            rating.setRating(dish.getGrades().stream().mapToInt(Integer::intValue).average().getAsDouble());
         } else {
             rating.setRating(0);
         }

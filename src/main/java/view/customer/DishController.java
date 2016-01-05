@@ -7,7 +7,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import org.controlsfx.control.Rating;
-import view.DishValues;
 import view.Util;
 
 import java.net.URL;

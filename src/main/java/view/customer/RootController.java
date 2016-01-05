@@ -12,7 +12,6 @@ import javafx.scene.control.Pagination;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import model.Dish;
-import view.DishValues;
 
 import java.io.IOException;
 import java.net.URL;
@@ -65,6 +64,7 @@ public class RootController implements Initializable {
 
     private void submit() {
         dishes.forEach(this::gradeDish);
+        customer.exportMenu();
         close();
     }
 
