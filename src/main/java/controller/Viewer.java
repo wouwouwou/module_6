@@ -7,6 +7,9 @@ package controller;
  */
 public class Viewer extends Controller {
 
+    /**
+     * Simple constructor. :D
+     */
     public Viewer() {
         super();
     }
