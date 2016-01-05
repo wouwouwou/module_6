@@ -11,7 +11,6 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.Pagination;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import model.Dish;
 
 import java.io.IOException;
 import java.net.URL;
@@ -20,7 +19,7 @@ import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 
 public class RootController implements Initializable {
-    public static final int DISH_AMOUNT = 3;
+    private static final int DISH_AMOUNT = 3;
 
     private final Customer customer;
     private final List<DishValues> dishes;
@@ -63,29 +62,18 @@ public class RootController implements Initializable {
     }
 
     private void submit() {
-        dishes.forEach(this::gradeDish);
+        dishes.forEach(values -> customer.gradeDish(values.getDish(), values.getComment(), values.getRating()));
         try {
             customer.exportMenu();
         } catch (IOException e) {
-            Alert alert = new Alert(Alert.AlertType.ERROR, "Error when exporting the menu. Contact the developers!");
+            new Alert(Alert.AlertType.ERROR, "Error when exporting the menu, please try again. If this issue persists, contact the developers.").showAndWait();
+            return;
         }
         close();
     }
 
     private void close() {
         ((Stage) root.getScene().getWindow()).close();
-    }
-
-    private void gradeDish(DishValues values) {
-        Dish dish = values.getDish();
-        String comment = values.getComment();
-        int rating = values.getRating();
-        if (!"".equals(comment)) {
-            dish.getComments().add(comment);
-        }
-        if (rating > 0) {
-            dish.getGrades().add(rating);
-        }
     }
 
     @FXML

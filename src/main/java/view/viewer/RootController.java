@@ -17,7 +17,7 @@ import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 
 public class RootController implements Initializable {
-    public static final int DISH_AMOUNT = 4;
+    private static final int DISH_AMOUNT = 4;
 
     private final Viewer viewer;
 

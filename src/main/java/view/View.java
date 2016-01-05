@@ -1,6 +1,7 @@
 package view;
 
 import controller.Customer;
+import controller.Owner;
 import controller.Viewer;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -10,9 +11,6 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.List;
 
-/**
- * Created by Wouter on 5-1-2016.
- */
 public class View extends Application {
 
     public static void main(String[] args) {
@@ -63,6 +61,12 @@ public class View extends Application {
     }
 
     private void loadOwnerGUI(Stage primaryStage) throws IOException {
-
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/owner/root.fxml"));
+        fxmlLoader.setController(new view.owner.RootController(new Owner()));
+        Parent root = fxmlLoader.load();
+        Scene scene = new Scene(root, 1280d, 720d);
+        primaryStage.setTitle("RestVote");
+        primaryStage.setScene(scene);
+        primaryStage.show();
     }
 }
