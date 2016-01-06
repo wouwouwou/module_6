@@ -1,4 +1,8 @@
+import controller.Controller;
 import controller.Program;
+import model.Dish;
+
+import java.util.ArrayList;
 
 /**
  * Created by Wouter on 14-12-2015.
@@ -12,7 +16,11 @@ public class Main {
      * @param args arguments given to the program
      */
     public static void main(String[] args) {
-        new Program();
+        Controller c = new Controller();
+        Dish d = new Dish(1, "Title", "Description", new ArrayList<Integer>(), new ArrayList<String>(), "steak.jpg");
+        c.getMenu().getDishes().clear();
+        c.getMenu().getDishes().add(d);
+        c.exportMenu();
     }
 
 }
