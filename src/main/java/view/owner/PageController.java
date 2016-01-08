@@ -12,7 +12,9 @@ import org.controlsfx.control.Rating;
 import view.Util;
 
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
+import java.util.stream.Collectors;
 
 public class PageController implements Initializable {
 
@@ -29,7 +31,7 @@ public class PageController implements Initializable {
     @FXML
     private Text description;
     @FXML
-    private ListView comments;
+    private ListView<Text> comments;
 
     public PageController(Dish dish) {
         this.dish = dish;
@@ -45,6 +47,10 @@ public class PageController implements Initializable {
             rating.setRating(0);
         }
         description.setText(dish.getDescription());
-        comments.setItems(FXCollections.observableArrayList(dish.getComments()));
+        List<Text> texts = dish.getComments().stream()
+                .map(Text::new)
+                .collect(Collectors.toList());
+        texts.forEach(text -> text.wrappingWidthProperty().bind(comments.widthProperty().subtract(30d)));
+        comments.setItems(FXCollections.observableArrayList(texts));
     }
 }
