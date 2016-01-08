@@ -1,6 +1,7 @@
 package view.owner;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -13,6 +14,7 @@ import java.io.File;
 import java.io.IOException;
 
 public class DialogController {
+
     @FXML
     private GridPane root;
     @FXML
@@ -23,6 +25,10 @@ public class DialogController {
     private Label imageLabel;
     @FXML
     private TextArea description;
+    @FXML
+    private Button cancelButton;
+    @FXML
+    private Button addButton;
 
     @FXML
     private void chooseFile() {
@@ -46,5 +52,15 @@ public class DialogController {
                 e.printStackTrace();
             }
         }
+    }
+
+    @FXML
+    private void addButton() {
+
+    }
+
+    @FXML
+    private void cancelButton() {
+
     }
 }

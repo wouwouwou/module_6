@@ -3,7 +3,23 @@
 <?import javafx.scene.control.Pagination?>
 <?import javafx.scene.layout.*?>
 <AnchorPane xmlns:fx="http://javafx.com/fxml" fx:id="root">
-    <Pagination fx:id="pagination" AnchorPane.topAnchor="10" AnchorPane.rightAnchor="10" AnchorPane.bottomAnchor="10" AnchorPane.leftAnchor="10"/>
-    <Button fx:id="deleteButton" text="Delete" onAction="#deleteButton" AnchorPane.bottomAnchor="10" AnchorPane.leftAnchor="10"/>
-    <Button fx:id="newButton" text="New Dish" onAction="#newButton" AnchorPane.rightAnchor="10" AnchorPane.bottomAnchor="10"/>
+
+    <Pagination fx:id="pagination"
+                AnchorPane.topAnchor="10"
+                AnchorPane.rightAnchor="10"
+                AnchorPane.bottomAnchor="10"
+                AnchorPane.leftAnchor="10"/>
+
+    <Button fx:id="deleteButton"
+            text="Delete"
+            onAction="#deleteButton"
+            AnchorPane.bottomAnchor="10"
+            AnchorPane.leftAnchor="10"/>
+
+    <Button fx:id="newButton"
+            text="New Dish"
+            onAction="#newButton"
+            AnchorPane.rightAnchor="10"
+            AnchorPane.bottomAnchor="10"/>
+
 </AnchorPane>
