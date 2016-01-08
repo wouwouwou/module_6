@@ -52,6 +52,7 @@
                 <Font name="Ariel" size="20"/>
             </font>
         </Label>
+
     </StackPane>
 
     <TextArea

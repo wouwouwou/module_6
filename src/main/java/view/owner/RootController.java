@@ -66,7 +66,7 @@ public class RootController implements Initializable {
     private void newButton() {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/owner/dialog.fxml"));
-            fxmlLoader.setController(new DialogController());
+            fxmlLoader.setController(new DialogController(owner));
             Parent root = fxmlLoader.load();
             Stage stage = new Stage();
             stage.setTitle("Add Dish");
@@ -74,6 +74,9 @@ public class RootController implements Initializable {
             stage.initModality(Modality.WINDOW_MODAL);
             stage.initOwner(newButton.getScene().getWindow());
             stage.showAndWait();
+            int pageIndex = pagination.getCurrentPageIndex();
+            pagination.setPageCount(owner.getMenu().getDishes().size());
+            pagination.setCurrentPageIndex(pageIndex);
         } catch (IOException e) {
             e.printStackTrace();
         }
