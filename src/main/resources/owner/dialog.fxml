@@ -14,40 +14,36 @@
         <Insets top="10" right="10" bottom="10" left="10"/>
     </padding>
 
-    <TextField
-            fx:id="title"
-            prefWidth="500"
-            promptText="Title"
-            GridPane.columnIndex="0"
-            GridPane.columnSpan="2"
-            GridPane.rowIndex="0"
-            GridPane.rowSpan="1">
+    <TextField fx:id="title"
+               prefWidth="500"
+               promptText="Title"
+               GridPane.columnIndex="0"
+               GridPane.columnSpan="2"
+               GridPane.rowIndex="0"
+               GridPane.rowSpan="1">
         <font>
             <Font name="Ariel" size="20" style="-fx-font-weight: bold"/>
         </font>
     </TextField>
 
-    <StackPane
-            onMouseClicked="#chooseFile"
-            GridPane.columnIndex="0"
-            GridPane.columnSpan="1"
-            GridPane.rowIndex="1"
-            GridPane.rowSpan="1">
+    <StackPane onMouseClicked="#chooseFile"
+               GridPane.columnIndex="0"
+               GridPane.columnSpan="1"
+               GridPane.rowIndex="1"
+               GridPane.rowSpan="1">
 
-        <ImageView
-                fx:id="image"
-                smooth="true"
-                preserveRatio="false"
-                fitWidth="250"
-                fitHeight="250"/>
+        <ImageView fx:id="image"
+                   smooth="true"
+                   preserveRatio="false"
+                   fitWidth="250"
+                   fitHeight="250"/>
 
-        <Label
-                fx:id="imageLabel"
-                text="Please select an image"
-                textFill="darkgray"
-                prefWidth="250"
-                prefHeight="250"
-                alignment="CENTER">
+        <Label fx:id="imageLabel"
+               text="Please select an image"
+               textFill="darkgray"
+               prefWidth="250"
+               prefHeight="250"
+               alignment="CENTER">
             <font>
                 <Font name="Ariel" size="20"/>
             </font>
@@ -55,18 +51,16 @@
 
     </StackPane>
 
-    <TextArea
-            fx:id="description"
-            prefWidth="250"
-            prefHeight="250"
-            promptText="Description"
-            GridPane.columnIndex="1"
-            GridPane.columnSpan="1"
-            GridPane.rowIndex="1"
-            GridPane.rowSpan="1"/>
+    <TextArea fx:id="description"
+              prefWidth="250"
+              prefHeight="250"
+              promptText="Description"
+              GridPane.columnIndex="1"
+              GridPane.columnSpan="1"
+              GridPane.rowIndex="1"
+              GridPane.rowSpan="1"/>
 
-    <Button
-            fx:id="cancelButton"
+    <Button fx:id="cancelButton"
             text="Cancel"
             onAction="#cancelButton"
             GridPane.halignment="LEFT"
@@ -75,8 +69,7 @@
             GridPane.rowIndex="2"
             GridPane.rowSpan="1"/>
 
-    <Button
-            fx:id="addButton"
+    <Button fx:id="addButton"
             text="Add Dish"
             onAction="#addButton"
             GridPane.halignment="RIGHT"

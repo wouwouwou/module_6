@@ -74,6 +74,7 @@ public class RootController implements Initializable {
             stage.initModality(Modality.WINDOW_MODAL);
             stage.initOwner(newButton.getScene().getWindow());
             stage.showAndWait();
+            owner.exportMenu();
             int pageIndex = pagination.getCurrentPageIndex();
             pagination.setPageCount(owner.getMenu().getDishes().size());
             pagination.setCurrentPageIndex(pageIndex);
@@ -86,6 +87,11 @@ public class RootController implements Initializable {
     private void deleteButton() {
         int pageIndex = pagination.getCurrentPageIndex();
         owner.deleteDish(owner.getMenu().getDishes().get(pageIndex));
+        try {
+            owner.exportMenu();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         int size = owner.getMenu().getDishes().size();
         setPageCount(size);
         pagination.setCurrentPageIndex(Math.min(pageIndex, size));
