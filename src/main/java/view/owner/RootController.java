@@ -75,9 +75,8 @@ public class RootController implements Initializable {
             stage.initOwner(newButton.getScene().getWindow());
             stage.showAndWait();
             owner.exportMenu();
-            int pageIndex = pagination.getCurrentPageIndex();
             pagination.setPageCount(owner.getMenu().getDishes().size());
-            pagination.setCurrentPageIndex(pageIndex);
+            pagination.setCurrentPageIndex(pagination.getPageCount() - 1);
         } catch (IOException e) {
             e.printStackTrace();
         }
