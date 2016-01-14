@@ -2,6 +2,7 @@ package view.owner;
 
 import controller.Owner;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
@@ -15,9 +16,11 @@ import view.Util;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
+import java.util.ResourceBundle;
 
-public class DialogController {
+public class DialogController implements Initializable {
 
     private final Owner owner;
 
@@ -42,6 +45,13 @@ public class DialogController {
         this.owner = owner;
     }
 
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        title.textProperty().addListener(observable -> updateButton());
+        description.textProperty().addListener(observable -> updateButton());
+        updateButton();
+    }
+
     @FXML
     private void chooseFile() {
         FileChooser fileChooser = new FileChooser();
@@ -64,6 +74,7 @@ public class DialogController {
             } catch (IOException e) {
                 e.printStackTrace();
             }
+            updateButton();
         }
     }
 
@@ -76,6 +87,10 @@ public class DialogController {
     @FXML
     private void cancelButton() {
         close();
+    }
+
+    private void updateButton() {
+        addButton.setDisable(path == null || "".equals(title.getText()) || description.getParagraphs().isEmpty());
     }
 
     private void close() {
