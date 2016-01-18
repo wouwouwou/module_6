@@ -9,6 +9,14 @@ import java.io.*;
 import java.nio.file.Files;
 
 public class Util {
+    public static final File BASE = new File("img");
+
+    static {
+        if (BASE.mkdir()) {
+            System.out.println("Created new img folder");
+        }
+    }
+
     public static void setPageCount(Pagination pagination, int index) {
         if (index > 0) {
             pagination.setPageCount(index);
@@ -39,7 +47,7 @@ public class Util {
     }
 
     private static File copyFile(File source, int i) throws IOException {
-        String targetName = "img/" + source.getName();
+        String targetName = BASE.getPath() + "/" + source.getName();
         if (i != 0) {
             targetName += " (" + i + ")";
         }
