@@ -6,20 +6,20 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
 /**
- * Created by Wouter on 5-1-2016.
- *
  * Tools for JSON
  */
 public class JSONTools {
 
     /**
      * Makes a JSONArray of all the dishes on the menu.
+     *
      * @return JSONArray of all the dishes on the menu.
      */
     public static JSONArray dishesToJSONArray(Menu menu) {
@@ -34,6 +34,7 @@ public class JSONTools {
 
     /**
      * Makes a JSONObject of a dish on the menu.
+     *
      * @param d The dish on the menu.
      * @return The dish on the menu as JSONObject.
      */
@@ -50,6 +51,7 @@ public class JSONTools {
 
     /**
      * Makes a JSONArray of the grades of a dish.
+     *
      * @param d The dish.
      * @return The grades as JSONArray.
      */
@@ -63,6 +65,7 @@ public class JSONTools {
 
     /**
      * Makes a JSONArray of the comments on a dish.
+     *
      * @param d The dish.
      * @return The comments as JSONArray.
      */
@@ -76,8 +79,9 @@ public class JSONTools {
 
     /**
      * Saves a JSONObject to a given filename.
+     *
      * @param filename The filename.
-     * @param json The JSONObject to be saved.
+     * @param json     The JSONObject to be saved.
      * @throws IOException
      */
     public static void saveJSON(String filename, JSONObject json) throws IOException {
@@ -89,6 +93,7 @@ public class JSONTools {
 
     /**
      * Parses a menu of a given json file.
+     *
      * @param filename The json file.
      * @return The Menu.
      * @throws IOException
@@ -103,6 +108,7 @@ public class JSONTools {
 
     /**
      * Parses an ArrayList of the dishes from the menu in JSON.
+     *
      * @param jsonMenu The menu in JSON.
      * @return ArrayList of dishes on the menu.
      */
@@ -110,7 +116,7 @@ public class JSONTools {
         ArrayList<Dish> dishes = new ArrayList<>();
         JSONArray dishArray = (JSONArray) jsonMenu.get("dishes");
         for (Object dish : dishArray) {
-            Dish d = parseDish((JSONObject)dish);
+            Dish d = parseDish((JSONObject) dish);
             dishes.add(d);
         }
         return dishes;
@@ -118,6 +124,7 @@ public class JSONTools {
 
     /**
      * Parses a dish from a JSONObject Dish.
+     *
      * @param dish The JSONObject to parse.
      * @return The actual Dish.
      */
@@ -134,13 +141,14 @@ public class JSONTools {
 
     /**
      * Parses the grades of a dish.
+     *
      * @param jsonGrades The JSONArray of grades.
      * @return The ArrayList of grades.
      */
     private static ArrayList<Integer> parseGrades(JSONArray jsonGrades) {
         ArrayList<Integer> grades = new ArrayList<>();
         for (Object jsonGrade : jsonGrades) {
-            Integer grade = ((Long)jsonGrade).intValue();
+            Integer grade = ((Long) jsonGrade).intValue();
             grades.add(grade);
         }
         return grades;
@@ -148,6 +156,7 @@ public class JSONTools {
 
     /**
      * Parses the comments of a dish.
+     *
      * @param jsonComments The JSONArray of comments.
      * @return The ArrayList of comments.
      */

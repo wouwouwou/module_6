@@ -12,6 +12,7 @@ import javafx.scene.control.Pagination;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import view.Util;
 
 import java.io.IOException;
 import java.net.URL;
@@ -37,10 +38,13 @@ public class RootController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         setPageCount(owner.getMenu().getDishes().size());
         pagination.setPageFactory(this::generatePage);
-        deleteButton.visibleProperty().bind(pagination.visibleProperty());
+        deleteButton.disableProperty().bind(pagination.visibleProperty().not());
     }
 
     private Node generatePage(int pageIndex) {
+        if (pageIndex >= owner.getMenu().getDishes().size()) {
+            return null;
+        }
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/owner/page.fxml"));
             fxmlLoader.setController(new PageController(owner.getMenu().getDishes().get(pageIndex)));
@@ -48,17 +52,6 @@ public class RootController implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
             return null;
-        }
-    }
-
-    private void setPageCount(int index) {
-        if (index > 0) {
-            pagination.setPageCount(index);
-            if (!pagination.isVisible()) {
-                pagination.setVisible(true);
-            }
-        } else if (pagination.isVisible()) {
-            pagination.setVisible(false);
         }
     }
 
@@ -75,7 +68,7 @@ public class RootController implements Initializable {
             stage.initOwner(newButton.getScene().getWindow());
             stage.showAndWait();
             owner.exportMenu();
-            pagination.setPageCount(owner.getMenu().getDishes().size());
+            Util.setPageCount(pagination, owner.getMenu().getDishes().size());
             pagination.setCurrentPageIndex(pagination.getPageCount() - 1);
         } catch (IOException e) {
             e.printStackTrace();
@@ -92,7 +85,7 @@ public class RootController implements Initializable {
             e.printStackTrace();
         }
         int size = owner.getMenu().getDishes().size();
-        setPageCount(size);
+        Util.setPageCount(pagination, size);
         pagination.setCurrentPageIndex(Math.min(pageIndex, size));
     }
 }

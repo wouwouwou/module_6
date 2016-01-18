@@ -1,11 +1,8 @@
 package model;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
- * Created by Wouter on 14-12-2015.
- *
  * This class represents the menu of the restaurant.
  */
 public class Menu {
@@ -24,6 +21,7 @@ public class Menu {
 
     /**
      * Creates a new menu.
+     *
      * @param dishes The dishes of the new Menu.
      */
     public Menu(ArrayList<Dish> dishes) {
@@ -32,6 +30,7 @@ public class Menu {
 
     /**
      * Gets the dishes of the menu.
+     *
      * @return Dishes of the menu.
      */
     public ArrayList<Dish> getDishes() {
@@ -40,6 +39,7 @@ public class Menu {
 
     /**
      * Sets the dishes of the menu
+     *
      * @param dishes The dishes to be set
      */
     public void setDishes(ArrayList<Dish> dishes) {

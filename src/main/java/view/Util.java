@@ -1,5 +1,6 @@
 package view;
 
+import javafx.scene.control.Pagination;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.shape.Rectangle;
@@ -8,6 +9,17 @@ import java.io.*;
 import java.nio.file.Files;
 
 public class Util {
+    public static void setPageCount(Pagination pagination, int index) {
+        if (index > 0) {
+            pagination.setPageCount(index);
+            if (!pagination.isVisible()) {
+                pagination.setVisible(true);
+            }
+        } else if (pagination.isVisible()) {
+            pagination.setVisible(false);
+        }
+    }
+
     public static void loadImage(String path, ImageView image) {
         loadImage(new File(path), image);
     }

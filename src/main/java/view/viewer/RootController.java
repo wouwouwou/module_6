@@ -9,6 +9,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Pagination;
 import javafx.scene.layout.AnchorPane;
 import model.Dish;
+import view.Util;
 
 import java.io.IOException;
 import java.net.URL;
@@ -36,7 +37,7 @@ public class RootController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        pagination.setPageCount((int) Math.ceil((double) viewer.getMenu().getDishes().size() / (double) DISH_AMOUNT));
+        Util.setPageCount(pagination, (int) Math.ceil((double) viewer.getMenu().getDishes().size() / (double) DISH_AMOUNT));
         pagination.setPageFactory(this::generatePage);
     }
 

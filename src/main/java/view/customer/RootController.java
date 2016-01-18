@@ -11,6 +11,7 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.Pagination;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import view.Util;
 
 import java.io.IOException;
 import java.net.URL;
@@ -42,7 +43,7 @@ public class RootController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        pagination.setPageCount((int) Math.ceil((double) dishes.size() / (double) DISH_AMOUNT));
+        Util.setPageCount(pagination, (int) Math.ceil((double) dishes.size() / (double) DISH_AMOUNT));
         pagination.setPageFactory(this::generatePage);
     }
 

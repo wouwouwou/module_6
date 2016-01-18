@@ -1,11 +1,8 @@
 package model;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 /**
- * Created by Wouter on 8-12-2015.
- *
  * This class represents a Dish.
  */
 public class Dish {
@@ -42,7 +39,8 @@ public class Dish {
 
     /**
      * Constructor of a Dish.
-     * @param title The dish needs a title.
+     *
+     * @param title       The dish needs a title.
      * @param description The dish needs a description.
      */
     public Dish(String title, String description) {
@@ -54,12 +52,13 @@ public class Dish {
 
     /**
      * Constructor of a Dish.
-     * @param id The dish needs an id.
-     * @param title The dish needs a title.
+     *
+     * @param id          The dish needs an id.
+     * @param title       The dish needs a title.
      * @param description The dish needs a description.
-     * @param grades The grades of the dish.
-     * @param comments The comments on the dish.
-     * @param imgpath The path to the image of the dish.
+     * @param grades      The grades of the dish.
+     * @param comments    The comments on the dish.
+     * @param imgpath     The path to the image of the dish.
      */
     public Dish(int id, String title, String description, ArrayList<Integer> grades, ArrayList<String> comments, String imgpath) {
         this.id = id;
@@ -72,12 +71,13 @@ public class Dish {
 
     /**
      * Constructor of a Dish.
-     * @param id The dish needs an id.
-     * @param title The dish needs a title.
+     *
+     * @param id          The dish needs an id.
+     * @param title       The dish needs a title.
      * @param description The dish needs a description.
-     * @param grades The grades of the dish.
-     * @param comments The comments on the dish.
-     * @param imgpath The path to the image of the dish.
+     * @param grades      The grades of the dish.
+     * @param comments    The comments on the dish.
+     * @param imgpath     The path to the image of the dish.
      */
     public Dish(Long id, String title, String description, ArrayList<Integer> grades, ArrayList<String> comments, String imgpath) {
         this.id = id.intValue();
@@ -90,6 +90,7 @@ public class Dish {
 
     /**
      * id getter.
+     *
      * @return The id of the dish.
      */
     public int getId() {
@@ -98,6 +99,7 @@ public class Dish {
 
     /**
      * id setter.
+     *
      * @param id the new id of this dish.
      */
     public void setId(int id) {
@@ -106,6 +108,7 @@ public class Dish {
 
     /**
      * Title getter.
+     *
      * @return The title of this dish.
      */
     public String getTitle() {
@@ -114,6 +117,7 @@ public class Dish {
 
     /**
      * Title setter.
+     *
      * @param title The new title of this dish.
      */
     public void setTitle(String title) {
@@ -122,6 +126,7 @@ public class Dish {
 
     /**
      * Description getter.
+     *
      * @return The description of this dish.
      */
     public String getDescription() {
@@ -130,6 +135,7 @@ public class Dish {
 
     /**
      * Description setter.
+     *
      * @param description The new description of this dish.
      */
     public void setDescription(String description) {
@@ -138,6 +144,7 @@ public class Dish {
 
     /**
      * Getter for the list of grades given to this dish.
+     *
      * @return The list of grades given to this dish.
      */
     public ArrayList<Integer> getGrades() {
@@ -146,6 +153,7 @@ public class Dish {
 
     /**
      * Setter for the list of grades given to this dish.
+     *
      * @param grades The list of grades to be set.
      */
     public void setGrades(ArrayList<Integer> grades) {
@@ -154,6 +162,7 @@ public class Dish {
 
     /**
      * Getter for the comments on this dish.
+     *
      * @return The comments on this dish.
      */
     public ArrayList<String> getComments() {
@@ -162,6 +171,7 @@ public class Dish {
 
     /**
      * Setter for the comments on this dish.
+     *
      * @param comments The comments on this dish.
      */
     public void setComments(ArrayList<String> comments) {
@@ -170,6 +180,7 @@ public class Dish {
 
     /**
      * Image path getter.
+     *
      * @return The path to the image of this dish.
      */
     public String getImgpath() {
@@ -178,6 +189,7 @@ public class Dish {
 
     /**
      * Image path setter.
+     *
      * @param imgpath The new path to the image of this dish.
      */
     public void setImgpath(String imgpath) {
