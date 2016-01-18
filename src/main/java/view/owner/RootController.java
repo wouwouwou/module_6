@@ -36,7 +36,7 @@ public class RootController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        setPageCount(owner.getMenu().getDishes().size());
+        Util.setPageCount(pagination, owner.getMenu().getDishes().size());
         pagination.setPageFactory(this::generatePage);
         deleteButton.disableProperty().bind(pagination.visibleProperty().not());
     }
