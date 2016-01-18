@@ -16,10 +16,19 @@
             AnchorPane.bottomAnchor="10"
             AnchorPane.leftAnchor="10"/>
 
-    <Button fx:id="newButton"
-            text="New Dish"
-            onAction="#newButton"
-            AnchorPane.rightAnchor="10"
-            AnchorPane.bottomAnchor="10"/>
+    <HBox spacing="10"
+          alignment="CENTER_RIGHT"
+          AnchorPane.rightAnchor="10"
+          AnchorPane.bottomAnchor="10">
+
+        <Button fx:id="editButton"
+                text="Edit Dish"
+                onAction="#editButton"/>
+
+        <Button fx:id="newButton"
+                text="New Dish"
+                onAction="#newButton"/>
+
+    </HBox>
 
 </AnchorPane>

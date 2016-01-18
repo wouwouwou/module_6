@@ -44,10 +44,33 @@ public class Dish {
      * @param description The dish needs a description.
      */
     public Dish(String title, String description) {
-        this.title = title;
-        this.description = description;
-        this.grades = new ArrayList<>();
-        this.imgpath = null;
+        this(title, description, null);
+    }
+
+
+    /**
+     * Constructor of a Dish.
+     *
+     * @param title       The dish needs a title.
+     * @param description The dish needs a description.
+     * @param imgpath     The path to the image of the dish.
+     */
+    public Dish(String title, String description, String imgpath) {
+        this(-1, title, description, new ArrayList<>(), new ArrayList<>(), imgpath);
+    }
+
+    /**
+     * Constructor of a Dish.
+     *
+     * @param id          The dish needs an id.
+     * @param title       The dish needs a title.
+     * @param description The dish needs a description.
+     * @param grades      The grades of the dish.
+     * @param comments    The comments on the dish.
+     * @param imgpath     The path to the image of the dish.
+     */
+    public Dish(Long id, String title, String description, ArrayList<Integer> grades, ArrayList<String> comments, String imgpath) {
+        this(id.intValue(), title, description, grades, comments, imgpath);
     }
 
     /**
@@ -62,25 +85,6 @@ public class Dish {
      */
     public Dish(int id, String title, String description, ArrayList<Integer> grades, ArrayList<String> comments, String imgpath) {
         this.id = id;
-        this.title = title;
-        this.description = description;
-        this.grades = grades;
-        this.comments = comments;
-        this.imgpath = imgpath;
-    }
-
-    /**
-     * Constructor of a Dish.
-     *
-     * @param id          The dish needs an id.
-     * @param title       The dish needs a title.
-     * @param description The dish needs a description.
-     * @param grades      The grades of the dish.
-     * @param comments    The comments on the dish.
-     * @param imgpath     The path to the image of the dish.
-     */
-    public Dish(Long id, String title, String description, ArrayList<Integer> grades, ArrayList<String> comments, String imgpath) {
-        this.id = id.intValue();
         this.title = title;
         this.description = description;
         this.grades = grades;

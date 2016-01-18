@@ -3,10 +3,7 @@ package view.owner;
 import controller.Owner;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.stage.FileChooser;
@@ -17,12 +14,15 @@ import view.Util;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class DialogController implements Initializable {
 
     private final Owner owner;
+
+    private final Pagination pagination;
+
+    private final Dish dish;
 
     private String path;
 
@@ -41,15 +41,33 @@ public class DialogController implements Initializable {
     @FXML
     private Button addButton;
 
-    public DialogController(Owner owner) {
+    public DialogController(Owner owner, Pagination pagination) {
+        this(owner, pagination, null);
+    }
+
+    public DialogController(Owner owner, Pagination pagination, Dish dish) {
         this.owner = owner;
+        this.pagination = pagination;
+        this.dish = dish;
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         title.textProperty().addListener(observable -> updateButton());
         description.textProperty().addListener(observable -> updateButton());
+        if (dish != null) {
+            initDish();
+        }
         updateButton();
+    }
+
+    private void initDish() {
+        addButton.setText("Edit Dish");
+        title.setText(dish.getTitle());
+        description.setText(dish.getDescription());
+        path = dish.getImgpath();
+        Util.loadImage(path, image);
+        imageLabel.setVisible(false);
     }
 
     @FXML
@@ -80,7 +98,23 @@ public class DialogController implements Initializable {
 
     @FXML
     private void addButton() {
-        owner.addDish(new Dish(-1, title.getText(), description.getText(), new ArrayList<>(), new ArrayList<>(), path));
+        if (dish == null) {
+            owner.addDish(new Dish(title.getText(), description.getText(), path));
+            Util.setPageCount(pagination, owner.getMenu().getDishes().size());
+            pagination.setCurrentPageIndex(pagination.getPageCount() - 1);
+        } else {
+            dish.setTitle(title.getText());
+            dish.setDescription(description.getText());
+            dish.setImgpath(path);
+            owner.editDish(dish);
+            Util.setPageCount(pagination, owner.getMenu().getDishes().size() + 1); // Force refresh
+            Util.setPageCount(pagination, owner.getMenu().getDishes().size());
+        }
+        try {
+            owner.exportMenu();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         close();
     }
 
