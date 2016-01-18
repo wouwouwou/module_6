@@ -4,6 +4,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.Cursor?>
 <GridPane xmlns:fx="http://javafx.com/fxml"
           fx:id="root"
           hgap="10"
@@ -31,6 +32,10 @@
                GridPane.columnSpan="1"
                GridPane.rowIndex="1"
                GridPane.rowSpan="1">
+
+        <cursor>
+            <Cursor fx:constant="HAND" />
+        </cursor>
 
         <ImageView fx:id="image"
                    smooth="true"

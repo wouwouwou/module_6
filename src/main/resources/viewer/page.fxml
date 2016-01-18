@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.text.Font?>
 <?import org.controlsfx.control.Rating?>
 <GridPane xmlns:fx="http://javafx.com/fxml"
           fx:id="root"
@@ -15,23 +15,16 @@
         <Insets top="10" right="10" bottom="10" left="10"/>
     </padding>
 
-    <Text fx:id="title"
-          wrappingWidth="250"
-          GridPane.columnIndex="0"
-          GridPane.columnSpan="1"
-          GridPane.rowIndex="0"
-          GridPane.rowSpan="1">
+    <Label fx:id="title"
+           prefWidth="250"
+           GridPane.columnIndex="0"
+           GridPane.columnSpan="1"
+           GridPane.rowIndex="0"
+           GridPane.rowSpan="1">
         <font>
             <Font name="Ariel" size="20" style="-fx-font-weight: bold"/>
         </font>
-    </Text>
-
-    <Text fx:id="description"
-          wrappingWidth="250"
-          GridPane.columnIndex="0"
-          GridPane.columnSpan="1"
-          GridPane.rowIndex="1"
-          GridPane.rowSpan="2"/>
+    </Label>
 
     <ImageView fx:id="image"
                smooth="true"
@@ -40,37 +33,44 @@
                fitHeight="250"
                GridPane.columnIndex="0"
                GridPane.columnSpan="1"
-               GridPane.rowIndex="3"
+               GridPane.rowIndex="1"
                GridPane.rowSpan="1"/>
 
-    <Rating fx:id="rating"
-            disable="true"
-            GridPane.columnIndex="1"
-            GridPane.columnSpan="1"
-            GridPane.rowIndex="0"
-            GridPane.rowSpan="1"/>
+    <Label fx:id="description"
+           alignment="TOP_LEFT"
+           prefWidth="250"
+           prefHeight="250"
+           GridPane.columnIndex="0"
+           GridPane.columnSpan="1"
+           GridPane.rowIndex="2"
+           GridPane.rowSpan="1"/>
 
-    <Text fx:id="votes"
-          wrappingWidth="250"
+    <HBox spacing="10"
+          alignment="CENTER"
+          prefWidth="250"
           GridPane.columnIndex="2"
           GridPane.columnSpan="1"
           GridPane.rowIndex="0"
-          GridPane.rowSpan="1"/>
+          GridPane.rowSpan="1">
 
-    <Text fx:id="label"
-          text="Comments:"
-          wrappingWidth="500"
-          GridPane.columnIndex="1"
-          GridPane.columnSpan="2"
-          GridPane.rowIndex="1"
-          GridPane.rowSpan="1"/>
+        <Rating fx:id="rating" disable="true"/>
+
+        <Label fx:id="votes"/>
+    </HBox>
+
+    <Label text="Comments:"
+           prefWidth="250"
+           GridPane.valignment="BOTTOM"
+           GridPane.columnIndex="1"
+           GridPane.columnSpan="1"
+           GridPane.rowIndex="0"
+           GridPane.rowSpan="1"/>
 
     <ListView fx:id="comments"
               prefWidth="500"
-              prefHeight="500"
               GridPane.columnIndex="1"
               GridPane.columnSpan="2"
-              GridPane.rowIndex="2"
+              GridPane.rowIndex="1"
               GridPane.rowSpan="2"/>
 
 </GridPane>

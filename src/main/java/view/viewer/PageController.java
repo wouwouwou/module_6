@@ -3,6 +3,7 @@ package view.viewer;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
@@ -23,17 +24,15 @@ public class PageController implements Initializable {
     @FXML
     private GridPane root;
     @FXML
-    private Text title;
+    private Label title;
     @FXML
-    private Text description;
+    private Label description;
     @FXML
     private ImageView image;
     @FXML
     private Rating rating;
     @FXML
-    private Text votes;
-    @FXML
-    private Text label;
+    private Label votes;
     @FXML
     private ListView<Text> comments;
 
