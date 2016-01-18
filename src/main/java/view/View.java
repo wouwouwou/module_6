@@ -1,13 +1,11 @@
 package view;
 
-import controller.Customer;
-import controller.Owner;
-import controller.Viewer;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+
 import java.io.IOException;
 import java.util.List;
 
@@ -22,7 +20,7 @@ public class View extends Application {
         Parameters p = getParameters();
         List<String> args = p.getUnnamed();
         if (args.size() != 1) {
-            throw new IllegalArgumentException("You gave more than 1 argument. Please give only one. c = customer, v = viewer, o = owner.");
+            throw new IllegalArgumentException("You didn't give a single argument. Please give only one. c = customer, v = viewer, o = owner.");
         }
         String arg = args.get(0);
         switch (arg) {
@@ -42,7 +40,6 @@ public class View extends Application {
 
     private void loadCustomerGUI(Stage primaryStage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/customer/root.fxml"));
-        fxmlLoader.setController(new view.customer.RootController(new Customer()));
         Parent root = fxmlLoader.load();
         Scene scene = new Scene(root, 1280d, 720d);
         primaryStage.setTitle("RestVote");
@@ -52,7 +49,6 @@ public class View extends Application {
 
     private void loadViewerGUI(Stage primaryStage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/viewer/root.fxml"));
-        fxmlLoader.setController(new view.viewer.RootController(new Viewer()));
         Parent root = fxmlLoader.load();
         Scene scene = new Scene(root, 1280d, 720d);
         primaryStage.setTitle("RestVote");
@@ -62,7 +58,6 @@ public class View extends Application {
 
     private void loadOwnerGUI(Stage primaryStage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/owner/root.fxml"));
-        fxmlLoader.setController(new view.owner.RootController(new Owner()));
         Parent root = fxmlLoader.load();
         Scene scene = new Scene(root, 1280d, 720d);
         primaryStage.setTitle("RestVote");

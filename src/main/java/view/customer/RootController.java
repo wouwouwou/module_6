@@ -34,6 +34,10 @@ public class RootController implements Initializable {
     @FXML
     private Button nextButton;
 
+    public RootController() {
+        this(new Customer());
+    }
+
     public RootController(Customer customer) {
         this.customer = customer;
         dishes = customer.getMenu().getDishes().stream()

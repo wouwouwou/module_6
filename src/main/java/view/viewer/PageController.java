@@ -1,43 +1,61 @@
 package view.viewer;
 
+import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.layout.VBox;
+import javafx.scene.control.ListView;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.GridPane;
+import javafx.scene.text.Text;
 import model.Dish;
+import org.controlsfx.control.Rating;
+import view.Util;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.stream.Collectors;
 
 public class PageController implements Initializable {
 
-    private final List<Dish> dishes;
+    private final Dish dish;
 
     @FXML
-    private VBox root;
+    private GridPane root;
+    @FXML
+    private Text title;
+    @FXML
+    private Text description;
+    @FXML
+    private ImageView image;
+    @FXML
+    private Rating rating;
+    @FXML
+    private Text votes;
+    @FXML
+    private Text label;
+    @FXML
+    private ListView<Text> comments;
 
-    public PageController(List<Dish> dishes) {
-        this.dishes = dishes;
+    public PageController(Dish dish) {
+        this.dish = dish;
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        dishes.stream()
-                .map(this::generateDish)
-                .forEach(root.getChildren()::add);
-    }
-
-    private Node generateDish(Dish dish) {
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/viewer/dish.fxml"));
-            fxmlLoader.setController(new DishController(dish));
-            return fxmlLoader.load();
-        } catch (IOException e) {
-            e.printStackTrace();
-            return null;
+        title.setText(dish.getTitle());
+        description.setText(dish.getDescription());
+        Util.loadImage(dish.getImgpath(), image);
+        if (!dish.getGrades().isEmpty()) {
+            rating.setRating(dish.getGrades().stream().mapToInt(Integer::intValue).average().getAsDouble());
+        } else {
+            rating.setRating(0);
         }
+        votes.setText(dish.getGrades().size() + " votes");
+        List<Text> texts = dish.getComments().stream()
+                .map(Text::new)
+                .collect(Collectors.toList());
+        texts.forEach(text -> text.wrappingWidthProperty().bind(comments.widthProperty().subtract(30d)));
+        comments.setItems(FXCollections.observableArrayList(texts));
     }
 }

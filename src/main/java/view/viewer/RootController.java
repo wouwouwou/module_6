@@ -5,31 +5,26 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.control.Button;
 import javafx.scene.control.Pagination;
-import javafx.scene.layout.AnchorPane;
-import model.Dish;
+import javafx.scene.layout.StackPane;
 import view.Util;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.List;
 import java.util.ResourceBundle;
-import java.util.stream.Collectors;
 
 public class RootController implements Initializable {
-    private static final int DISH_AMOUNT = 4;
 
     private final Viewer viewer;
 
     @FXML
-    private AnchorPane root;
+    private StackPane root;
     @FXML
     private Pagination pagination;
-    @FXML
-    private Button backButton;
-    @FXML
-    private Button nextButton;
+
+    public RootController() {
+        this(new Viewer());
+    }
 
     public RootController(Viewer viewer) {
         this.viewer = viewer;
@@ -37,32 +32,22 @@ public class RootController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        Util.setPageCount(pagination, (int) Math.ceil((double) viewer.getMenu().getDishes().size() / (double) DISH_AMOUNT));
+        Util.setPageCount(pagination, viewer.getMenu().getDishes().size());
         pagination.setPageFactory(this::generatePage);
     }
 
     private Node generatePage(int pageIndex) {
-        List<Dish> pageDishes = viewer.getMenu().getDishes().stream()
-                .skip(DISH_AMOUNT * pageIndex)
-                .limit(DISH_AMOUNT)
-                .collect(Collectors.toList());
+        if (pageIndex >= viewer.getMenu().getDishes().size()) {
+            //FIXME empty page pagination
+            return null;
+        }
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/viewer/page.fxml"));
-            fxmlLoader.setController(new PageController(pageDishes));
+            fxmlLoader.setController(new PageController(viewer.getMenu().getDishes().get(pageIndex)));
             return fxmlLoader.load();
         } catch (IOException e) {
             e.printStackTrace();
             return null;
         }
-    }
-
-    @FXML
-    private void next() {
-        pagination.setCurrentPageIndex((pagination.getCurrentPageIndex() + 1) % pagination.getPageCount());
-    }
-
-    @FXML
-    private void back() {
-        pagination.setCurrentPageIndex((pagination.getCurrentPageIndex() + pagination.getPageCount() - 1) % pagination.getPageCount());
     }
 }

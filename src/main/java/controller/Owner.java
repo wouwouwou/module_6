@@ -8,7 +8,7 @@ import java.util.ArrayList;
 /**
  * This class controls the model as an Owner.
  */
-public class Owner extends Controller {
+public class Owner extends Viewer {
 
     public Owner() {
         super();

@@ -13,6 +13,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import view.Util;
+import view.viewer.PageController;
 
 import java.io.IOException;
 import java.net.URL;
@@ -30,6 +31,10 @@ public class RootController implements Initializable {
     @FXML
     private Button newButton;
 
+    public RootController() {
+        this(new Owner());
+    }
+
     public RootController(Owner owner) {
         this.owner = owner;
     }
@@ -46,7 +51,7 @@ public class RootController implements Initializable {
             return null;
         }
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/owner/page.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/viewer/page.fxml"));
             fxmlLoader.setController(new PageController(owner.getMenu().getDishes().get(pageIndex)));
             return fxmlLoader.load();
         } catch (IOException e) {
