@@ -3,12 +3,16 @@ package view.owner;
 import controller.Owner;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import model.Dish;
+import view.DishPagination;
 import view.Util;
 
 import java.io.File;
@@ -20,7 +24,7 @@ public class DialogController implements Initializable {
 
     private final Owner owner;
 
-    private final Pagination pagination;
+    private final DishPagination pagination;
 
     private final Dish dish;
 
@@ -41,11 +45,11 @@ public class DialogController implements Initializable {
     @FXML
     private Button addButton;
 
-    public DialogController(Owner owner, Pagination pagination) {
+    public DialogController(Owner owner, DishPagination pagination) {
         this(owner, pagination, null);
     }
 
-    public DialogController(Owner owner, Pagination pagination, Dish dish) {
+    public DialogController(Owner owner, DishPagination pagination, Dish dish) {
         this.owner = owner;
         this.pagination = pagination;
         this.dish = dish;
@@ -100,15 +104,14 @@ public class DialogController implements Initializable {
     private void addButton() {
         if (dish == null) {
             owner.addDish(new Dish(title.getText(), description.getText(), path));
-            Util.setPageCount(pagination, owner.getMenu().getDishes().size());
-            pagination.setCurrentPageIndex(pagination.getPageCount() - 1);
+            pagination.updatePageCount(owner.getMenu().getDishes().size());
+            pagination.setCurrentPage(pagination.getPageCount() - 1);
         } else {
             dish.setTitle(title.getText());
             dish.setDescription(description.getText());
             dish.setImgpath(path);
             owner.editDish(dish);
-            Util.setPageCount(pagination, owner.getMenu().getDishes().size() + 1); // Force refresh
-            Util.setPageCount(pagination, owner.getMenu().getDishes().size());
+            pagination.updatePageCount(owner.getMenu().getDishes().size());
         }
         try {
             owner.exportMenu();

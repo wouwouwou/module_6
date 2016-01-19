@@ -10,11 +10,10 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
-import javafx.scene.control.Pagination;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import view.Util;
+import view.DishPagination;
 import view.viewer.PageController;
 
 import java.io.IOException;
@@ -27,7 +26,7 @@ public class RootController implements Initializable {
     @FXML
     private AnchorPane root;
     @FXML
-    private Pagination pagination;
+    private DishPagination pagination;
     @FXML
     private Button deleteButton;
     @FXML
@@ -45,29 +44,23 @@ public class RootController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        Util.setPageCount(pagination, owner.getMenu().getDishes().size());
+        pagination.setPageCount(owner.getMenu().getDishes().size());
         pagination.setPageFactory(this::generatePage);
-        deleteButton.disableProperty().bind(pagination.visibleProperty().not());
-        editButton.disableProperty().bind(pagination.visibleProperty().not());
+        deleteButton.disableProperty().bind(pagination.getVisibleProperty().not());
+        editButton.disableProperty().bind(pagination.getVisibleProperty().not());
     }
 
     private Node generatePage(int pageIndex) {
-        if (pageIndex >= owner.getMenu().getDishes().size()) {
-            return null;
-        }
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/viewer/page.fxml"));
-            fxmlLoader.setController(new PageController(owner.getMenu().getDishes().get(pageIndex)));
-            return fxmlLoader.load();
-        } catch (IOException e) {
-            e.printStackTrace();
+        if (pageIndex < owner.getMenu().getDishes().size()) {
+            return DishPagination.generatePage("/viewer/page.fxml", new PageController(owner.getMenu().getDishes().get(pageIndex)));
+        } else {
             return null;
         }
     }
 
     @FXML
     private void editButton() {
-        showDialog(new DialogController(owner, pagination, owner.getMenu().getDishes().get(pagination.getCurrentPageIndex())));
+        showDialog(new DialogController(owner, pagination, owner.getMenu().getDishes().get(pagination.getCurrentPage())));
     }
 
     @FXML
@@ -100,11 +93,11 @@ public class RootController implements Initializable {
     }
 
     private void delete() {
-        int pageIndex = pagination.getCurrentPageIndex();
+        int pageIndex = pagination.getCurrentPage();
         owner.deleteDish(owner.getMenu().getDishes().get(pageIndex));
         int size = owner.getMenu().getDishes().size();
-        Util.setPageCount(pagination, size);
-        pagination.setCurrentPageIndex(Math.min(pageIndex, size));
+        pagination.setPageCount(size);
+        pagination.setCurrentPage(Math.min(pageIndex, size));
         try {
             owner.exportMenu();
         } catch (IOException e) {

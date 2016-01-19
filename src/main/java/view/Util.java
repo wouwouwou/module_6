@@ -1,6 +1,5 @@
 package view;
 
-import javafx.scene.control.Pagination;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.shape.Rectangle;
@@ -14,17 +13,6 @@ public class Util {
     static {
         if (BASE.mkdir()) {
             System.out.println("Created new img folder");
-        }
-    }
-
-    public static void setPageCount(Pagination pagination, int index) {
-        if (index > 0) {
-            pagination.setPageCount(index);
-            if (!pagination.isVisible()) {
-                pagination.setVisible(true);
-            }
-        } else if (pagination.isVisible()) {
-            pagination.setVisible(false);
         }
     }
 

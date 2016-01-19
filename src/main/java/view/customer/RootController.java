@@ -2,16 +2,14 @@ package view.customer;
 
 import controller.Customer;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
-import javafx.scene.control.Pagination;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import view.Util;
+import view.DishPagination;
 
 import java.io.IOException;
 import java.net.URL;
@@ -28,7 +26,7 @@ public class RootController implements Initializable {
     @FXML
     private AnchorPane root;
     @FXML
-    private Pagination pagination;
+    private DishPagination pagination;
     @FXML
     private Button backButton;
     @FXML
@@ -47,7 +45,7 @@ public class RootController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        Util.setPageCount(pagination, (int) Math.ceil((double) dishes.size() / (double) DISH_AMOUNT));
+        pagination.setPageCount((int) Math.ceil((double) dishes.size() / (double) DISH_AMOUNT));
         pagination.setPageFactory(this::generatePage);
     }
 
@@ -56,14 +54,7 @@ public class RootController implements Initializable {
                 .skip(DISH_AMOUNT * pageIndex)
                 .limit(DISH_AMOUNT)
                 .collect(Collectors.toList());
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/customer/page.fxml"));
-            fxmlLoader.setController(new PageController(pageDishes));
-            return fxmlLoader.load();
-        } catch (IOException e) {
-            e.printStackTrace();
-            return null;
-        }
+        return DishPagination.generatePage("/customer/page.fxml", new PageController(pageDishes));
     }
 
     private void submit() {
