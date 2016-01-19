@@ -38,7 +38,7 @@
     <TextArea fx:id="comment"
               wrapText="true"
               promptText="Comment (optional)"
-              onKeyTyped="#setComment"
+              onKeyReleased="#setComment"
               prefWidth="250"
               prefHeight="125"/>
 
