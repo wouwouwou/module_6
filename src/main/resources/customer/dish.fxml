@@ -8,9 +8,13 @@
 <VBox xmlns:fx="http://javafx.com/fxml"
       fx:id="root"
       spacing="10"
-      alignment="CENTER">
+      alignment="CENTER"
+      style="-fx-background-color: #FF9478;"
+      stylesheets="@../stylesheet.css">
 
     <Text fx:id="title"
+          fill="WHITE"
+          textAlignment="CENTER"
           wrappingWidth="250">
         <font>
             <Font name="Ariel" size="20" style="-fx-font-weight: bold"/>
@@ -18,6 +22,7 @@
     </Text>
 
     <Text fx:id="description"
+          fill="WHITE"
           wrappingWidth="250"/>
 
     <ImageView fx:id="image"
@@ -26,15 +31,15 @@
                fitWidth="250"
                fitHeight="250"/>
 
+    <Rating fx:id="rating"
+            max="5"
+            onMouseClicked="#setRating"/>
+
     <TextArea fx:id="comment"
               wrapText="true"
               promptText="Comment (optional)"
               onKeyTyped="#setComment"
               prefWidth="250"
               prefHeight="125"/>
-
-    <Rating fx:id="rating"
-            max="5"
-            onMouseClicked="#setRating"/>
 
 </VBox>

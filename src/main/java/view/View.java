@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -25,42 +26,25 @@ public class View extends Application {
         String arg = args.get(0);
         switch (arg) {
             case "c":
-                loadCustomerGUI(primaryStage);
+                loadStage(primaryStage, "/customer/root.fxml");
                 break;
             case "v":
-                loadViewerGUI(primaryStage);
+                loadStage(primaryStage, "/viewer/root.fxml");
                 break;
             case "o":
-                loadOwnerGUI(primaryStage);
+                loadStage(primaryStage, "/owner/root.fxml");
                 break;
             default:
                 throw new IllegalArgumentException("You gave a wrong argument. Please use only these: c = customer, v = viewer, o = owner");
         }
     }
 
-    private void loadCustomerGUI(Stage primaryStage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/customer/root.fxml"));
+    private void loadStage(Stage primaryStage, String resource) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(resource));
         Parent root = fxmlLoader.load();
         Scene scene = new Scene(root, 1280d, 720d);
-        primaryStage.setTitle("RestVote");
-        primaryStage.setScene(scene);
-        primaryStage.show();
-    }
-
-    private void loadViewerGUI(Stage primaryStage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/viewer/root.fxml"));
-        Parent root = fxmlLoader.load();
-        Scene scene = new Scene(root, 1280d, 720d);
-        primaryStage.setTitle("RestVote");
-        primaryStage.setScene(scene);
-        primaryStage.show();
-    }
-
-    private void loadOwnerGUI(Stage primaryStage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/owner/root.fxml"));
-        Parent root = fxmlLoader.load();
-        Scene scene = new Scene(root, 1280d, 720d);
-        primaryStage.setTitle("RestVote");
+        primaryStage.setTitle("DishRate");
+        primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("/logo.png")));
         primaryStage.setScene(scene);
         primaryStage.show();
     }

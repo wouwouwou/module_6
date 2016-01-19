@@ -1,0 +1,30 @@
+.rating .container .button {
+	-fx-shape : null;
+	-fx-background-image: url("star2.png"); 
+	-fx-background-size: 30px 30px;
+	-fx-background-repeat: no-repeat;
+}
+
+.rating .container .strong{
+	-fx-shape : null;
+	-fx-background-image: url("star1.png");
+	-fx-background-size: 30px 30px;
+	-fx-background-repeat: no-repeat; 
+}
+
+#title {
+	-fx-translate-x : 8px;
+}
+
+#description {
+	-fx-translate-x : 8px;
+	-fx-translate-y : -4px;
+}
+
+.image-view {
+	-fx-background-radius: 30px;
+}
+
+.pagination .pagination-control .control-box .number-button:selected {
+	-fx-background-color : #FF9478;
+}

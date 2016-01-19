@@ -3,4 +3,5 @@
 <HBox xmlns:fx="http://javafx.com/fxml"
       fx:id="root"
       spacing="30"
-      alignment="CENTER"/>
+      alignment="CENTER"
+      stylesheets="@../stylesheet.css"/>

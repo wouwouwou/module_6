@@ -2,7 +2,10 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.layout.*?>
 <?import view.DishPagination?>
-<AnchorPane xmlns:fx="http://javafx.com/fxml" fx:id="root" fx:controller="view.owner.RootController">
+<AnchorPane xmlns:fx="http://javafx.com/fxml"
+            fx:id="root"
+            fx:controller="view.owner.RootController"
+            stylesheets="@../stylesheet.css">
 
     <DishPagination fx:id="pagination"
                     AnchorPane.topAnchor="10"
