@@ -2,10 +2,10 @@ package view.customer;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
 import org.controlsfx.control.Rating;
 import view.Util;
 
@@ -19,9 +19,9 @@ public class DishController implements Initializable {
     @FXML
     private VBox root;
     @FXML
-    private Text title;
+    private Label title;
     @FXML
-    private Text description;
+    private Label description;
     @FXML
     private ImageView image;
     @FXML

@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
 <?import org.controlsfx.control.Rating?>
 <VBox xmlns:fx="http://javafx.com/fxml"
       fx:id="root"
@@ -12,18 +13,24 @@
       style="-fx-background-color: #FF9478;"
       stylesheets="@../stylesheet.css">
 
-    <Text fx:id="title"
-          fill="WHITE"
-          textAlignment="CENTER"
-          wrappingWidth="250">
+    <padding>
+        <Insets top="10" right="10" bottom="10" left="10"/>
+    </padding>
+
+    <Label fx:id="title"
+           textFill="WHITE"
+           alignment="CENTER"
+           prefWidth="250">
         <font>
             <Font name="Ariel" size="20" style="-fx-font-weight: bold"/>
         </font>
-    </Text>
+    </Label>
 
-    <Text fx:id="description"
-          fill="WHITE"
-          wrappingWidth="250"/>
+    <Label fx:id="description"
+           textFill="WHITE"
+           alignment="CENTER"
+           wrapText="true"
+           prefWidth="250"/>
 
     <ImageView fx:id="image"
                smooth="true"

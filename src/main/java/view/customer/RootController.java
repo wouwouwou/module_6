@@ -7,7 +7,7 @@ import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
-import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import view.DishPagination;
 
@@ -24,7 +24,7 @@ public class RootController implements Initializable {
     private final List<DishValues> dishes;
 
     @FXML
-    private AnchorPane root;
+    private BorderPane root;
     @FXML
     private DishPagination pagination;
     @FXML
