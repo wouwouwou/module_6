@@ -67,6 +67,7 @@ public class DialogController implements Initializable {
 
     private void initDish() {
         addButton.setText("Edit Dish");
+        addButton.setStyle("-fx-background-color: #FFAB40;");
         title.setText(dish.getTitle());
         description.setText(dish.getDescription());
         path = dish.getImgpath();
