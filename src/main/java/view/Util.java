@@ -1,8 +1,10 @@
 package view;
 
+import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.shape.Rectangle;
 
 import java.io.*;
 import java.nio.file.Files;
@@ -79,6 +81,16 @@ public class Util {
                     }
                 }
             }
+        }
+    }
+
+    public static Node generatePage(String resource, Initializable controller) {
+        FXMLLoader fxmlLoader = new FXMLLoader(DishPagination.class.getResource(resource));
+        fxmlLoader.setController(controller);
+        try {
+            return fxmlLoader.load();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
 }

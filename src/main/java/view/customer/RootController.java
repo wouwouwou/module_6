@@ -10,6 +10,7 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import view.DishPagination;
+import view.Util;
 
 import java.io.IOException;
 import java.net.URL;
@@ -54,7 +55,7 @@ public class RootController implements Initializable {
                 .skip(DISH_AMOUNT * pageIndex)
                 .limit(DISH_AMOUNT)
                 .collect(Collectors.toList());
-        return DishPagination.generatePage("/customer/page.fxml", new PageController(pageDishes));
+        return Util.generatePage("/customer/page.fxml", new PageController(pageDishes));
     }
 
     private void submit() {

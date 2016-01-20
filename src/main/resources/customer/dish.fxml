@@ -8,45 +8,48 @@
 <?import org.controlsfx.control.Rating?>
 <VBox xmlns:fx="http://javafx.com/fxml"
       fx:id="root"
-      spacing="10"
       alignment="CENTER"
-      style="-fx-background-color: #FF9478;"
       stylesheets="@../stylesheet.css">
 
-    <padding>
-        <Insets top="10" right="10" bottom="10" left="10"/>
-    </padding>
+    <VBox spacing="10"
+          alignment="CENTER"
+          VBox.vgrow="NEVER"
+          style="-fx-background-color: #FF9478;">
+        <padding>
+            <Insets top="10" right="10" bottom="10" left="10"/>
+        </padding>
 
-    <Label fx:id="title"
-           textFill="WHITE"
-           alignment="CENTER"
-           prefWidth="250">
-        <font>
-            <Font name="Ariel" size="20" style="-fx-font-weight: bold"/>
-        </font>
-    </Label>
+        <Label fx:id="title"
+               textFill="WHITE"
+               alignment="CENTER"
+               prefWidth="250">
+            <font>
+                <Font name="Ariel" size="20" style="-fx-font-weight: bold"/>
+            </font>
+        </Label>
 
-    <Label fx:id="description"
-           textFill="WHITE"
-           alignment="CENTER"
-           wrapText="true"
-           prefWidth="250"/>
+        <Label fx:id="description"
+               textFill="WHITE"
+               alignment="CENTER"
+               wrapText="true"
+               prefWidth="250"/>
 
-    <ImageView fx:id="image"
-               smooth="true"
-               preserveRatio="false"
-               fitWidth="250"
-               fitHeight="250"/>
+        <ImageView fx:id="image"
+                   smooth="true"
+                   preserveRatio="false"
+                   fitWidth="250"
+                   fitHeight="250"/>
 
-    <Rating fx:id="rating"
-            max="5"
-            onMouseClicked="#setRating"/>
+        <Rating fx:id="rating"
+                max="5"
+                onMouseClicked="#setRating"/>
 
-    <TextArea fx:id="comment"
-              wrapText="true"
-              promptText="Comment (optional)"
-              onKeyReleased="#setComment"
-              prefWidth="250"
-              prefHeight="125"/>
+        <TextArea fx:id="comment"
+                  wrapText="true"
+                  promptText="Comment (optional)"
+                  onKeyReleased="#setComment"
+                  prefWidth="250"
+                  prefHeight="125"/>
 
+    </VBox>
 </VBox>

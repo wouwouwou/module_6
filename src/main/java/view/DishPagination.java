@@ -34,16 +34,6 @@ public class DishPagination extends StackPane implements Initializable {
         }
     }
 
-    public static Node generatePage(String resource, Initializable controller) {
-        FXMLLoader fxmlLoader = new FXMLLoader(DishPagination.class.getResource(resource));
-        fxmlLoader.setController(controller);
-        try {
-            return fxmlLoader.load();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         setPageCount(1);

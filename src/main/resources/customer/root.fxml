@@ -33,12 +33,11 @@
                 prefHeight="50"
                 BorderPane.alignment="CENTER">
             <font>
-                <Font name="Ariel" size="20" style="-fx-font-weight: bold"/>
+                <Font name="Ariel" size="20"/>
             </font>
             <BorderPane.margin>
                 <Insets top="10" right="10" bottom="10" left="10"/>
             </BorderPane.margin>
         </Button>
     </bottom>
-
 </BorderPane>

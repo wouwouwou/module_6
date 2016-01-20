@@ -6,6 +6,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.layout.StackPane;
 import view.DishPagination;
+import view.Util;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -35,7 +36,7 @@ public class RootController implements Initializable {
 
     private Node generatePage(int pageIndex) {
         if (pageIndex < viewer.getMenu().getDishes().size()) {
-            return DishPagination.generatePage("/viewer/page.fxml", new PageController(viewer.getMenu().getDishes().get(pageIndex)));
+            return Util.generatePage("/viewer/page.fxml", new PageController(viewer.getMenu().getDishes().get(pageIndex)));
         } else {
             return null;
         }

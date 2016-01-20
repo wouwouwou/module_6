@@ -14,6 +14,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import view.DishPagination;
+import view.Util;
 import view.viewer.PageController;
 
 import java.io.IOException;
@@ -52,7 +53,7 @@ public class RootController implements Initializable {
 
     private Node generatePage(int pageIndex) {
         if (pageIndex < owner.getMenu().getDishes().size()) {
-            return DishPagination.generatePage("/viewer/page.fxml", new PageController(owner.getMenu().getDishes().get(pageIndex)));
+            return Util.generatePage("/viewer/page.fxml", new PageController(owner.getMenu().getDishes().get(pageIndex)));
         } else {
             return null;
         }
