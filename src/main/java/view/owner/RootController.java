@@ -10,6 +10,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -61,21 +62,22 @@ public class RootController implements Initializable {
 
     @FXML
     private void editButton() {
-        showDialog(new DialogController(owner, pagination, owner.getMenu().getDishes().get(pagination.getCurrentPage())));
+        showDialog(new DialogController(owner, pagination, owner.getMenu().getDishes().get(pagination.getCurrentPage())), "Edit Dish");
     }
 
     @FXML
     private void newButton() {
-        showDialog(new DialogController(owner, pagination));
+        showDialog(new DialogController(owner, pagination), "Add Dish");
     }
 
-    private void showDialog(DialogController dialogController) {
+    private void showDialog(DialogController dialogController, String title) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/owner/dialog.fxml"));
             fxmlLoader.setController(dialogController);
             Parent root = fxmlLoader.load();
             Stage stage = new Stage();
-            stage.setTitle("Add Dish");
+            stage.setTitle(title);
+            stage.getIcons().add(new Image(getClass().getResourceAsStream("/logo.png")));
             stage.setScene(new Scene(root, 480d, 360d));
             stage.initModality(Modality.WINDOW_MODAL);
             stage.initOwner(newButton.getScene().getWindow());
